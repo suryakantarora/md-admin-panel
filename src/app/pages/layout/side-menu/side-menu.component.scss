@@ -1,0 +1,66 @@
+$primary: #3700b3;
+$light: #3700b325;
+
+mat-accordion {
+    mat-expansion-panel {
+        box-shadow: none !important;
+        border-radius: 0px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+
+    mat-expansion-panel-header {
+        padding: 5px !important;
+        max-height: 40px !important;
+    }
+
+    mat-panel-title {
+        color: #0000008a !important;
+    }
+}
+
+.active-menu {
+    background-color: $light  !important;
+
+    mat-panel-title {
+        color: $primary  !important;
+    }
+}
+
+.child-menu {
+    color: #838181 !important;
+    font-size: small !important;
+}
+
+.active-child-menu {
+    color: $primary  !important;
+}
+
+.sm {
+    font-size: smaller !important;
+}
+
+.profile-card {
+    // width: 100%;
+    // max-width: 400px;
+    box-shadow: none !important;
+    border-bottom: 1px solid #ccc;
+    padding: 0px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+.profile-header {
+    padding-left: 16px;
+    padding-top: 16px;
+}
+
+.profile-header-image {
+    background-image: url('../../../../assets/imgs/surya.jpg');
+    background-size: cover;
+}
+
+.profile-btn {
+    margin-right: 20px;
+}
+

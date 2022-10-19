@@ -1,0 +1,151 @@
+<div class="main-div">
+  <mat-card class="form-card">
+    <mat-card-content class="login-form-card">
+      <mat-grid-list cols="2">
+        <mat-grid-tile class="image-section">
+          <img src="assets/imgs/bank-login.png" class="login-img">
+        </mat-grid-tile>
+        <mat-grid-tile class="login-form">
+          <form autocomplete="off" style="width: 90%;" (ngSubmit)="validateForm()">
+            <div class="text-center">
+              <div class="divider"><span></span><span> LOGIN</span><span></span></div>
+            </div>
+            <div style="display: none;">
+              <input type="text" id="PreventChromeAutocomplete" name="PreventChromeAutocomplete"
+                autocomplete="username" />
+              <input type="password" id="PreventChromePasswordAutocomplete" name="PreventChromePasswordAutocomplete"
+                autocomplete="password" />
+            </div>
+            <table class="full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Login As</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">admin_panel_settings</mat-icon>
+                    <mat-select required [(ngModel)]="userType" name="userType">
+                      <mat-option value="INST">Institution </mat-option>
+                      <mat-option value="ADMIN">Admin </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                    <input matInput placeholder="Username" [(ngModel)]="customerId" name="customerId" required
+                      autocomplete="off">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">lock</mat-icon>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Password"
+                      [(ngModel)]="customerPass" name="customerPass" required autocomplete="new-password" />
+                    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                      [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                      <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+            <div>
+              <button mat-button class="btn" color="accent"  type="button" (click)="forgotPass()">
+                <mat-icon>lock_reset</mat-icon> &nbsp;Forgot Password? Click to Reset.
+              </button>
+              <br><br>
+              <mat-grid-list cols="2" rowHeight="50px">
+                <mat-grid-tile>
+                  <button mat-stroked-button class="btn" color="primary" type="reset" (click)="resetForm()">
+                    <mat-icon>delete_outline</mat-icon> &nbsp;Reset
+                  </button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <button mat-flat-button class="btn" color="primary" type="submit">
+                    <mat-icon>login</mat-icon> &nbsp; Login
+                  </button>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </form>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+
+    <!-- Mobile View Coding goes here-->
+    <div class="mobile-view text-center">
+      <form autocomplete="off" style="width: 100%;" (ngSubmit)="validateForm()">
+        <div class="text-center">
+          <div class="divider"><span></span><span> LOGIN</span><span></span></div>
+        </div>
+        <div style="display: none;">
+          <input type="text" id="PreventChromeAutocomplete" name="PreventChromeAutocomplete"
+            autocomplete="username" />
+          <input type="password" id="PreventChromePasswordAutocomplete" name="PreventChromePasswordAutocomplete"
+            autocomplete="password" />
+        </div>
+        <table style="width:100%;padding:16px" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Login As</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">admin_panel_settings</mat-icon>
+                <mat-select required [(ngModel)]="userType" name="userType">
+                  <mat-option value="INST">Institution </mat-option>
+                  <mat-option value="ADMIN">Admin </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Username</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                <input matInput placeholder="Username" [(ngModel)]="customerId" name="customerId" required
+                  autocomplete="off">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">lock</mat-icon>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Password"
+                  [(ngModel)]="customerPass" name="customerPass" required autocomplete="new-password" />
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                  <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <button mat-button class="btn" color="warn" type="button" (click)="forgotPass()">
+            <mat-icon>lock_reset</mat-icon> &nbsp;Forgot Password? Click to Reset.
+          </button>
+          <br><br>
+          <mat-grid-list cols="2" rowHeight="50px">
+            <mat-grid-tile>
+              <button mat-stroked-button class="btn" color="primary" type="reset" (click)="resetForm()">
+                <mat-icon>delete_outline</mat-icon> &nbsp;Reset
+              </button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button mat-flat-button class="btn" color="primary" type="submit">
+                <mat-icon>login</mat-icon> &nbsp; Login
+              </button>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

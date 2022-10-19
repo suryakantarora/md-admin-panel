@@ -1,0 +1,64 @@
+.profile-banner {
+  height: 170px;
+  background-color: #3F51B5;
+}
+
+.avatar-box {
+  margin-left: 80px;
+  position: relative;
+  top: 30px
+}
+
+
+.testimonial-card .card-up {
+  height: 120px;
+  overflow: hidden;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.testimonial-card .avatar {
+  width: 110px;
+  margin-top: -60px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 50%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.profile-toolbar {
+  background-color: #fff;
+  color: #283593;
+  border-radius: 10px !important;
+}
+
+.camera{
+  position: relative;
+  bottom: 20px;
+  left: 50%;
+  box-shadow: none;
+}
+.no-shadow{
+  box-shadow: none !important;
+}
+.round{
+  border-radius: 10px;
+}
+.header-text{
+  background-color: #3F51B5;
+  color: #fff;
+  padding-left:15px;
+  padding-top:15px;
+  padding-bottom: 2px;
+  border-radius: 8px 8px 0px 0px !important;
+}
+.no-margin {
+  margin: 0px;
+  padding:0px;
+}
+
+.value {
+  color: #3F51B5;
+}

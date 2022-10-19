@@ -1,0 +1,56 @@
+<mat-sidenav-container class="sidenav-container" hasBackdrop="false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'push' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar color="primary">
+      <span>FinoTech</span>
+    </mat-toolbar>
+    <mat-nav-list style="padding-right:5px">
+      <!-- <a mat-list-item role="link">Link 1</a>
+      <a mat-list-item role="link">Link 2</a>
+      <a mat-list-item role="link">Link 3</a> -->
+      <app-side-menu></app-side-menu>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Dashboard</span>
+      <span class="spacer"></span>
+      <button mat-icon-button class="nav-icon-fullscreen">
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+      <button mat-icon-button class="nav-icon">
+        <mat-icon matBadge="3" matBadgeColor="warn">email</mat-icon>
+      </button>
+      <div class="notification-area">
+        <button mat-icon-button class="nav-icon" (click)="openNotificationBox($event)">
+          <mat-icon matBadge="5" matBadgeColor="warn"> notification_important </mat-icon>
+        </button>
+      </div>
+      <button mat-button [matMenuTriggerFor]="profileMenu" class="avatar-btn">
+        <img src="assets/imgs/surya.jpg" class="avatar-profile">
+      </button>
+      <mat-menu #profileMenu="matMenu" xPosition="after">
+        <button mat-menu-item color="primary">
+          <mat-icon class="btn-icon" color="primary">person</mat-icon>
+          <strong>Profile</strong>
+        </button>
+        <button mat-menu-item>
+          <mat-icon color="primary" class="btn-icon">settings</mat-icon>
+          <strong>Settings</strong>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item class="menu-btn" routerLink="/signin">
+          <mat-icon color="accent" class="btn-icon">lock</mat-icon>
+          <strong>Logout</strong>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <!-- <app-dashboard></app-dashboard> -->
+    <!-- <app-landing></app-landing> -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

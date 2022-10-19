@@ -1,0 +1,47 @@
+<div class="profile">
+  <mat-card class="profile-card">
+    <mat-card-header class="profile-header">
+      <div mat-card-avatar class="profile-header-image"></div>
+      <mat-card-title>Suryakant Kumar</mat-card-title>
+      <mat-card-subtitle>Profile: MAKER</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content style="text-align:center">
+      <button mat-icon-button color="primary" aria-label="Profile" class="profile-btn" [routerLink]="'user-details'">
+        <mat-icon>person</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" aria-label="Settings" class="profile-btn">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" aria-label="Logout" class="profile-btn">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>
+<mat-accordion *ngFor="let m of menuList" (click)="checkActiveMenu(m.menuId)">
+  <mat-expansion-panel *ngIf="m.child.length>0" [expanded]="activeMenu===m.menuId">
+    <mat-expansion-panel-header [ngClass]="activeMenu===m.menuId?'active-menu':''" [routerLink]="m.link">
+      <mat-panel-title>
+        <mat-icon>{{m.icon}}</mat-icon> &nbsp;
+        {{m.name}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div *ngFor="let s of m.child" (click)="subActiveMenu=s.menuId">
+      <a mat-list-item class="child-menu"  [routerLink]="s.link"
+        [ngClass]="activeMenu===m.menuId && subActiveMenu===s.menuId?'active-child-menu':''" class="sm">
+        <mat-icon mat-list-icon>chevron_right</mat-icon>
+        <div mat-line>
+          <span>{{s.name}}</span>
+        </div>
+      </a>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel hideToggle="true" *ngIf="m.child.length<=0">
+    <mat-expansion-panel-header [ngClass]="activeMenu===m.menuId?'active-menu':''">
+      <mat-panel-title>
+        <mat-icon>{{m.icon}}</mat-icon> &nbsp;
+        {{m.name}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>

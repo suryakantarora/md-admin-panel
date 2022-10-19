@@ -1,0 +1,31 @@
+<div class="center" *ngIf="type==='ALERT'">
+  <img src="assets/imgs/alert.png" class="icon">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    {{message}}
+  </div>
+  <div style="padding-top:40px">
+    <button mat-stroked-button mat-dialog-close color="accent" (click)="close('N')"
+      class="full-btn">Dismiss</button>
+  </div>
+</div>
+
+
+<div class="center" *ngIf="type==='CNF_ALERT'">
+  <img src="assets/imgs/alert.png" class="icon">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    {{message}}
+  </div>
+  <div style="padding-top:40px">
+    <mat-grid-list cols="2" rowHeight="40px">
+      <mat-grid-tile>
+        <button mat-stroked-button mat-dialog-close color="accent" (click)="close('N')"
+          class="full-btn">Dismiss</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-flat-button mat-dialog-close color="primary" (click)="close('Y')" class="full-btn">Proceed</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+$primary: #3F51B5;
+$secondary: #FF8F00;
+$light: #eee;
+$danger: #d30000;
+$dark: #283593;
+
+mat-icon.mat-card-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 35px;
+    color: $primary;
+}
+
+.tab-contents {
+    padding: 10px;
+}
+
+.table-container {
+    height: 500px;
+    overflow: auto;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+table {
+    width: 100%;
+}
+.table-header{
+    background-color: $primary;
+    color: #fff !important;
+    th{
+        color: #fff;
+    }
+}

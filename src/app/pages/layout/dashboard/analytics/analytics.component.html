@@ -1,0 +1,192 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Analytics Dashboard</h1>
+  <div class="row">
+    <div class="col-xl-3 col-md-6 col-sm-12">
+      <div class="card card-2">
+        <div class="card-statistic-3 p-4">
+          <div class="card-icon card-icon-large">
+            <mat-icon class="large-icon">diversity_3</mat-icon>
+          </div>
+          <div class="mb-4">
+            <h5 class="card-title mb-0">All Customers</h5>
+          </div>
+          <div class="row align-items-center mb-2 d-flex">
+            <div class="col-8">
+              <h2 class="d-flex align-items-center mb-0">
+                55.07k
+              </h2>
+            </div>
+            <div class="col-4 text-right">
+              <span>9.23% <mat-icon>arrow_upward</mat-icon>
+              </span>
+            </div>
+          </div>
+          <!-- <div class="progress mt-1 " data-height="8" style="height: 8px;">
+            <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+          </div> -->
+          <section class="example-section">
+            <mat-progress-bar color="primary" mode="determinate" value="100"></mat-progress-bar>
+            <!-- <label class="progress-label">This Month</label> -->
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sm-12">
+      <div class="card card-1">
+        <div class="card-statistic-3 p-4">
+          <div class="card-icon card-icon-large">
+            <mat-icon class="large-icon">group</mat-icon>
+          </div>
+          <div class="mb-4">
+            <h5 class="card-title mb-0">New Customers</h5>
+          </div>
+          <div class="row align-items-center mb-2 d-flex">
+            <div class="col-8">
+              <h2 class="d-flex align-items-center mb-0">
+                15.07k
+              </h2>
+            </div>
+            <div class="col-4 text-right">
+              <span>9.23% <mat-icon>arrow_upward</mat-icon>
+              </span>
+            </div>
+          </div>
+          <section>
+            <mat-progress-bar color="primary" mode="determinate" value="50"> </mat-progress-bar>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sm-12">
+      <div class="card card-3">
+        <div class="card-statistic-3 p-4">
+          <div class="card-icon card-icon-large">
+            <mat-icon class="large-icon">switch_access_shortcut</mat-icon>
+          </div>
+          <div class="mb-4">
+            <h5 class="card-title mb-0">Total Transactions</h5>
+          </div>
+          <div class="row align-items-center mb-2 d-flex">
+            <div class="col-8">
+              <h2 class="d-flex align-items-center mb-0">
+                15.07k
+              </h2>
+            </div>
+            <div class="col-4 text-right">
+              <span>9.23% <mat-icon>arrow_upward</mat-icon>
+              </span>
+            </div>
+          </div>
+          <section>
+            <mat-progress-bar color="amber" mode="determinate" value="0"> </mat-progress-bar>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sm-12">
+      <div class="card card-4">
+        <div class="card-statistic-3 p-4">
+          <div class="card-icon card-icon-large">
+            <mat-icon class="large-icon">sync_problem</mat-icon>
+          </div>
+          <div class="mb-4">
+            <h5 class="card-title mb-0">Failed Transactions</h5>
+          </div>
+          <div class="row align-items-center mb-2 d-flex">
+            <div class="col-8">
+              <h2 class="d-flex align-items-center mb-0">
+                100
+              </h2>
+            </div>
+            <div class="col-4 text-right">
+              <span>10.00% <mat-icon>arrow_downward</mat-icon>
+              </span>
+            </div>
+          </div>
+          <section>
+            <mat-progress-bar color="amber" mode="determinate" value="10"> </mat-progress-bar>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="txn-panel">
+    <mat-accordion>
+      <mat-expansion-panel expanded="true" (opened)="txnGraphPanelOpenState = true"
+        (closed)="txnGraphPanelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="txn-header">
+            Transactions Overview
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="card-body">
+          <div id="chart">
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+              [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip" [dataLabels]="chartOptions.dataLabels">
+            </apx-chart>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-header">Transactions Count</div>
+        <div class="card-body">
+          <div id="chart">
+            <apx-chart [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
+              [labels]="pieChartOptions.labels" [xaxis]="pieChartOptions.xaxis" [stroke]="pieChartOptions.stroke"
+              [tooltip]="pieChartOptions.tooltip" [dataLabels]="pieChartOptions.dataLabels"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-header">Overall Progress</div>
+        <div class="card-body">
+          <div id="chart">
+            <apx-chart [series]="circleChartOptions.series" [chart]="circleChartOptions.chart"
+              [labels]="circleChartOptions.labels" [xaxis]="circleChartOptions.xaxis"
+              [stroke]="circleChartOptions.stroke" [tooltip]="circleChartOptions.tooltip"
+              [dataLabels]="circleChartOptions.dataLabels"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>
+            <div id="chart">
+              <apx-chart
+                [series]="chartOptions.series"
+                [chart]="chartOptions.chart"
+                [xaxis]="chartOptions.xaxis"
+                [stroke]="chartOptions.stroke"
+                [tooltip]="chartOptions.tooltip"
+                [dataLabels]="chartOptions.dataLabels"
+              ></apx-chart>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list> -->
+</div>

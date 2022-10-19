@@ -1,0 +1,72 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 300px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+
+.logo {
+  height: 70px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-icon.mat-card-avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+}
+
+.avatar-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50% !important;
+  padding: 0px;
+  flex: wrap;
+  border: 0px none;
+}
+
+.avatar-profile {
+  width: 49px;
+  height: 49px;
+  border-radius: 50% !important;
+}
+
+.btn-icon {
+  margin-right: 10px !important;
+}
+
+.menu-btn {
+  padding-right: 10px;
+  min-width: 150px;
+}
+
+.nav-icon {
+  margin-right: 30px;
+}
+
+.nav-icon-fullscreen {
+  margin-right: 30px;
+  size: 60px !important;
+  mat-icon{
+    font-size: x-large;
+  }
+}
+
+.notification-card {
+  width: 400px;
+}
+.no-shadow{
+  background:none !important;
+  box-shadow: 5px 10px #888888 !important;
+}

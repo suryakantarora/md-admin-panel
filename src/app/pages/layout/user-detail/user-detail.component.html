@@ -1,0 +1,69 @@
+<div class="card m-3">
+  <mat-toolbar class="profile-toolbar">
+    <button mat-icon-button aria-label="Profile Icon">
+      <mat-icon>person</mat-icon>
+    </button>
+    <span>User Details</span>
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="More Menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-toolbar>
+</div>
+<div class="m-3">
+  <section>
+    <div class="row text-center">
+      <div class="col-md-4 mb-5 mb-md-0">
+        <div class="card testimonial-card">
+          <div class="card-up" style="background-color: #3F51B5;"></div>
+          <div class="avatar mx-auto bg-white">
+            <img src="assets/imgs/surya.jpg" class="rounded-circle img-fluid" />
+          </div>
+          <button mat-mini-fab color="primary" aria-label="Update Profile" class="camera">
+            <mat-icon>photo_camera</mat-icon>
+          </button>
+          <!-- <mat-icon class="camera">photo_camera</mat-icon> -->
+
+          <div class="card-body p-0 m-0">
+            <mat-card class="no-shadow round">
+              <mat-card-title>Suryakant Kumar</mat-card-title>
+              <mat-card-subtitle>Profile: MAKER</mat-card-subtitle>
+              <mat-divider></mat-divider>
+              <div class="text-start">
+                <mat-list>
+                  <mat-list-item>
+                    <div mat-line>Last Login: {{today | date: 'dd MMM, yyyy'}}</div>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>
+                    <div mat-line>Password Changed: {{today| date: 'dd MMM, yyyy'}}</div>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>
+                    <div mat-line>Activity: Normal</div>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 text-start">
+        <div class="card">
+          <div class="card-header no-margin">
+            <div class="header-text">
+              <h2>Profile Details</h2>
+            </div>
+          </div>
+          <div class="card-body no-margin">
+            <div class="row">
+              <div class="col-6">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
