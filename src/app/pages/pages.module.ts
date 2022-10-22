@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { MaterialModule } from '../material-module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { MaterialModule } from '../material-module';
     CommonModule,
     PagesRoutingModule,
     MaterialModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

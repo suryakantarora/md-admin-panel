@@ -6,140 +6,202 @@
     </mat-card-header>
   </mat-card>
 </div> -->
-<div class="content-container md-padding">
-  <mat-toolbar color="primary">
-    <button mat-icon-button>
-     <mat-icon>create_new_folder</mat-icon>
-   </button>
-   <span>Create New Wallet</span>
-   <span class="spacer"></span>
-   <button mat-icon-button>
-    <mat-icon>cottage</mat-icon>
-  </button>
- </mat-toolbar>
-  <mat-card>
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>First Name</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
-          <input matInput placeholder="Firstname" name="customerId" required
-            autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Last Name</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
-          <input matInput placeholder="Lastname" name="customerId" required
-            autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Gender</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">man_3</mat-icon>
-          <mat-select required [(ngModel)]="user.gender" name="gender">
-            <mat-option value="F">Female</mat-option>
-            <mat-option value="M">Male</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
-          <mat-label>DOB(MM/DD/YYYY)</mat-label>
-          <input matInput [matDatepicker]="datepicker" required>
-          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-          <mat-datepicker #datepicker>
-            <mat-datepicker-actions>
-              <button mat-button matDatepickerCancel>Cancel</button>
-              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-            </mat-datepicker-actions>
-          </mat-datepicker>
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Mobile Number</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">stay_current_portrait</mat-icon>
-          <input matInput placeholder="XXXXXXXXXX" name="mobile" required autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Email ID</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">mail</mat-icon>
-          <input matInput placeholder="email@domain.com" name="mobile" required type="email" autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Currency</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">attach_money</mat-icon>
-          <mat-select required [(ngModel)]="user.gender" name="gender">
-            <mat-option value="INR">INR</mat-option>
-            <mat-option value="LAK">LAK</mat-option>
-            <mat-option value="THB">THB</mat-option>
-            <mat-option value="USD">USD</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>City</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">apartment</mat-icon>
-          <input matInput placeholder="City" name="mobile" required autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>District</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">location_city</mat-icon>
-          <input matInput placeholder="District" name="mobile" required autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Province/State</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">villa</mat-icon>
-          <input matInput placeholder="Villa" name="mobile" required autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Pin/Zip Code</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">location_on</mat-icon>
-          <input matInput placeholder="Pin/Zip" name="mobile" required autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Country</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">flag</mat-icon>
-          <input matInput placeholder="Country" name="mobile" required autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Initial Balance</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">wallet</mat-icon>
-          <input matInput placeholder="Wallet Balance" name="mobile" required autocomplete="off">
-        </mat-form-field>
-      </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
-        <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Remarks</mat-label>
-          <mat-icon matPrefix class="prefix-icon" color="primary">descriptions</mat-icon>
-          <input matInput placeholder="Remarks" name="mobile" required autocomplete="off">
-        </mat-form-field>
+<mat-tab-group [selectedIndex]="selectedTab" (selectedIndexChange)="setTabValue($event)">
+  <mat-tab class="mat-active">
+    <ng-template mat-tab-label>
+      <span class="primary">Wallet List</span>
+    </ng-template>
+    <div class="tab-contents">
+      <div class="content-container md-padding">
+        <mat-toolbar color="primary">
+          <button mat-icon-button>
+            <mat-icon>wallet</mat-icon>
+          </button>
+          <span>Existing Wallet</span>
+          <span class="spacer"></span>
+          <button mat-icon-button>
+            <mat-icon>cottage</mat-icon>
+          </button>
+        </mat-toolbar>
+        <div class="bg-white md-border-primary">
+          <table class="table table-hover">
+            <thead class="bg-light">
+              <tr>
+                <th>S.No.</th>
+                <th>Customer Name</th>
+                <th>Mobile Number</th>
+                <th>Create By</th>
+                <th>Verified By</th>
+                <th>Created On</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let w of walletList;let i=index" class="align-middle" [ngClass]="i%2==1?'table-active':''">
+                <td>{{i+1}}</td>
+                <td>{{w.name}}</td>
+                <td>{{w.mobile}}</td>
+                <td>{{w.createdBy}}</td>
+                <td>{{w.verifiedBy}}</td>
+                <td>{{w.date | date:'dd MMM, yyyy hh:mm:ss a'}}</td>
+                <td>
+                  <button mat-icon-button>
+                    <mat-icon color="primary">visibility</mat-icon>
+                  </button> &nbsp;
+                  <button mat-icon-button>
+                    <mat-icon color="yellow">edit_note</mat-icon>
+                  </button> &nbsp;
+                  <button mat-icon-button>
+                    <mat-icon color="warn">delete_forever</mat-icon>
+                  </button> &nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <mat-divider></mat-divider>
-    <div class="padding text-right mt-3">
-      <button mat-stroked-button color="primary">Reset Form</button> &nbsp;
-      <button mat-flat-button color="primary" (click)="showAlert()">Create Wallet</button>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="primary">Create New Wallet</span>
+    </ng-template>
+    <div class="tab-contents">
+      <div class="content-container md-padding">
+        <mat-toolbar color="primary">
+          <button mat-icon-button>
+            <mat-icon>create_new_folder</mat-icon>
+          </button>
+          <span>Create New Wallet</span>
+          <span class="spacer"></span>
+          <button mat-icon-button>
+            <mat-icon>cottage</mat-icon>
+          </button>
+        </mat-toolbar>
+        <mat-card>
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                <input matInput placeholder="Firstname" name="customerId" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                <input matInput placeholder="Lastname" name="customerId" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">man_3</mat-icon>
+                <mat-select required [(ngModel)]="user.gender" name="gender">
+                  <mat-option value="F">Female</mat-option>
+                  <mat-option value="M">Male</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+                <mat-label>DOB(MM/DD/YYYY)</mat-label>
+                <input matInput [matDatepicker]="datepicker" required>
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Mobile Number</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">stay_current_portrait</mat-icon>
+                <input matInput placeholder="XXXXXXXXXX" name="mobile" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Email ID</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">mail</mat-icon>
+                <input matInput placeholder="email@domain.com" name="mobile" required type="email" autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Currency</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">attach_money</mat-icon>
+                <mat-select required [(ngModel)]="user.gender" name="gender">
+                  <mat-option value="INR">INR</mat-option>
+                  <mat-option value="LAK">LAK</mat-option>
+                  <mat-option value="THB">THB</mat-option>
+                  <mat-option value="USD">USD</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>City</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">apartment</mat-icon>
+                <input matInput placeholder="City" name="mobile" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>District</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">location_city</mat-icon>
+                <input matInput placeholder="District" name="mobile" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Province/State</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">villa</mat-icon>
+                <input matInput placeholder="Villa" name="mobile" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Pin/Zip Code</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">location_on</mat-icon>
+                <input matInput placeholder="Pin/Zip" name="mobile" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Country</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">flag</mat-icon>
+                <input matInput placeholder="Country" name="mobile" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Initial Balance</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">wallet</mat-icon>
+                <input matInput placeholder="Wallet Balance" name="mobile" required autocomplete="off">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Remarks</mat-label>
+                <mat-icon matPrefix class="prefix-icon" color="primary">descriptions</mat-icon>
+                <input matInput placeholder="Remarks" name="mobile" required autocomplete="off">
+              </mat-form-field>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="padding text-center mt-3">
+            <button mat-stroked-button color="primary" class="btn-md">Reset Form</button> &nbsp;
+            <button mat-flat-button color="primary" (click)="showAlert()" class="btn-md">Create Wallet</button>
+          </div>
+        </mat-card>
+      </div>
     </div>
-  </mat-card>
-</div>
+  </mat-tab>
+</mat-tab-group>

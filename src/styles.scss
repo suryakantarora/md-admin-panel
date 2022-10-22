@@ -159,3 +159,15 @@ $dark: #283593;
 .text-right{
   text-align: right;
 }
+.end{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.btn-md{
+  padding:10px !important;
+  min-width: 200px !important;
+}
+.md-border-primary{
+  border:2px solid $primary;
+}

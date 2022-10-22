@@ -1,1 +1,57 @@
-<p>statement works!</p>
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>receipt_long</mat-icon>
+    </button>
+    <span>Wallet Statement</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-card style="min-height:500px" class="padding no-shadow">
+    <form (ngSubmit)="validateWallet()" *ngIf="pageStatus==1">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12"></div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Wallet Number</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">account_balance_wallet</mat-icon>
+            <input type="tel" maxlength="10" matInput [(ngModel)]="walletNumber" placeholder="Enter Wallet Number"
+              name="walletNumber" required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <button mat-flat-button color="primary" class="btn-md" type="submit">
+            <mat-icon>search</mat-icon> &nbsp;Search Wallet
+          </button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="pageStatus==2">
+      <div class="bg-white">
+        <table class="table">
+          <thead class="bg-light">
+            <tr>
+              <th>S.No.</th>
+              <th>Transaction Date</th>
+              <th>Wallet Number</th>
+              <th>Reference Number</th>
+              <th>Txn Type</th>
+              <th>Txn Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let w of walletStatement;let i=index" class="align-middle">
+              <td>{{i+1}}</td>
+              <td>{{w.txnDate | date:'dd MMM, yyyy hh:mm:ss a'}}</td>
+              <td>{{w.mobile}}</td>
+              <td>{{w.reference}}</td>
+              <td>{{(w.txnType==='DR'?'Debit':'Credit')}}</td>
+              <td>{{currency}} {{w.amount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </mat-card>
