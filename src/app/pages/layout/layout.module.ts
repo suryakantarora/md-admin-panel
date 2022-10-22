@@ -23,6 +23,11 @@ import { UserManagementComponent } from './user_profile/user-management/user-man
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { FormsModule } from '@angular/forms';
+import { NewsComponent } from './others/news/news.component';
+import { PromotionsComponent } from './others/promotions/promotions.component';
+import { FeedbackComponent } from './others/feedback/feedback.component';
+import { RatesComponent } from './others/rates/rates.component';
+import { BalanceSheetComponent } from './wallet/balance-sheet/balance-sheet.component';
 
 
 @NgModule({
@@ -44,6 +49,11 @@ import { FormsModule } from '@angular/forms';
     ProfileManagementComponent,
     UserManagementComponent,
     UserDetailComponent,
+    NewsComponent,
+    PromotionsComponent,
+    FeedbackComponent,
+    RatesComponent,
+    BalanceSheetComponent,
   ],
   imports: [
     CommonModule,

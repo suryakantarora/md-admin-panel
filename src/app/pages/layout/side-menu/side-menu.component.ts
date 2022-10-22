@@ -41,11 +41,12 @@ export class SideMenuComponent implements OnInit {
         child: [
           { menuId: 'SM1000', active: false, name: 'Wallet Creation', link: 'create-wallet', },
           { menuId: 'SM1001', active: false, name: 'Add Money',  link: 'add-money',},
-          { menuId: 'SM1002', active: false, name: 'Check Statement', link: 'statement', },
-          { menuId: 'SM1003', active: false, name: 'Wallet to Account Transfer', link: 'transfer', },
-          { menuId: 'SM1004', active: false, name: 'Wallet Withdrawal', link: 'withdrawal', },
-          { menuId: 'SM1005', active: false, name: 'Wallet Block/Unblock', link: 'block-unblock', },
-          { menuId: 'SM1006', active: false, name: 'Transaction Monitoring', link: 'txn-monitor', },
+          { menuId: 'SM1002', active: false, name: 'Fund Transfer', link: 'transfer', },
+          { menuId: 'SM1003', active: false, name: 'Check Statement', link: 'statement', },
+          { menuId: 'SM1004', active: false, name: 'Balance Sheet', link: 'balance-sheet', },
+          { menuId: 'SM1005', active: false, name: 'Wallet Withdrawal', link: 'withdrawal', },
+          { menuId: 'SM1006', active: false, name: 'Wallet Block/Unblock', link: 'block-unblock', },
+          { menuId: 'SM1007', active: false, name: 'Transaction Monitoring', link: 'txn-monitor', },
         ]
       }, {
         menuId: 'M02', active: false, name: 'Merchant Management', icon: 'store',
@@ -70,8 +71,6 @@ export class SideMenuComponent implements OnInit {
       }, {
         menuId: 'M04', active: false, name: 'Exchange Rate', icon: 'currency_exchange', child: []
       }, {
-        menuId: 'M05', active: false, name: 'News', icon: 'newspaper', child: []
-      }, {
         menuId: 'M08', active: false, name: 'Reports', icon: 'summarize',
         child: [
           { menuId: 'SM8001', active: false, name: 'Loan Reports' },
@@ -84,6 +83,13 @@ export class SideMenuComponent implements OnInit {
         menuId: 'M09', active: false, name: 'User & Profile', icon: 'account_circle', child: [
           {menuId: 'SM9001', active: false, name: 'Profile Management', link: 'profile-management'},
           {menuId: 'SM9002', active: false, name: 'User Management', link: 'user-management'},
+        ]
+      }, {
+        menuId: 'M10', active: false, name: 'Others', icon: 'dynamic_feed',child:[
+          {menuId: 'SM10001',active: false, name: 'News', link: 'news'},
+          {menuId: 'SM10002',active: false, name: 'Promotions', link: 'promotions'},
+          {menuId: 'SM10003',active: false, name: 'Feedback', link: 'feedback'},
+          {menuId: 'SM10004',active: false, name: 'Exchange Rates', link: 'rates'},
         ]
       }
     ]

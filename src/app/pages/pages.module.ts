@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     PagesRoutingModule,
