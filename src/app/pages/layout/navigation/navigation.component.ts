@@ -7,6 +7,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotificationsComponent } from 'src/app/components/notifications/notifications.component';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-navigation',
@@ -24,7 +25,8 @@ export class NavigationComponent {
 
   constructor(private breakpointObserver: BreakpointObserver,
     public dialog: MatDialog,
-    private dialogRef: MatDialogRef<any>
+    private dialogRef: MatDialogRef<any>,
+    public global: GlobalService
   ) { }
   openNotificationBox(ev: any) {
     console.log(ev.target.value);

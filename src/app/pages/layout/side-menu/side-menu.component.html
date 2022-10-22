@@ -18,9 +18,9 @@
     </mat-card-content>
   </mat-card>
 </div>
-<mat-accordion *ngFor="let m of menuList" (click)="checkActiveMenu(m.menuId)">
+<mat-accordion *ngFor="let m of menuList" (click)="checkActiveMenu(m.menuId, m.name)">
   <mat-expansion-panel *ngIf="m.child.length>0" [expanded]="activeMenu===m.menuId">
-    <mat-expansion-panel-header [ngClass]="activeMenu===m.menuId?'active-menu':''" [routerLink]="m.link">
+    <mat-expansion-panel-header [ngClass]="activeMenu===m.menuId?'active-menu':''">
       <mat-panel-title>
         <mat-icon>{{m.icon}}</mat-icon> &nbsp;
         {{m.name}}

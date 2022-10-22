@@ -22,6 +22,7 @@ import { ProfileManagementComponent } from './user_profile/profile-management/pr
 import { UserManagementComponent } from './user_profile/user-management/user-management.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     LayoutRoutingModule,
     MaterialModule,
     NgApexchartsModule,
+    FormsModule
 
   ], providers: [
     {

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -12,12 +13,18 @@ export class SideMenuComponent implements OnInit {
   menuList: any = [];
   activeMenu: string = '';
   subActiveMenu: string = '';
-  constructor() { }
+  constructor(
+    private global: GlobalService
+  ) { }
 
   ngOnInit(): void {
     this.initMenuList();
   }
-  checkActiveMenu(id: string) {
+  setHeaderName(name:string){
+    this.global.pageTitle=name
+  }
+  checkActiveMenu(id: string, name:string) {
+    this.global.pageTitle=name
     this.activeMenu = id;
   }
   initMenuList() {
