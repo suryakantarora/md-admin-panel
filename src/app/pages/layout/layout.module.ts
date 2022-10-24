@@ -28,6 +28,11 @@ import { PromotionsComponent } from './others/promotions/promotions.component';
 import { FeedbackComponent } from './others/feedback/feedback.component';
 import { RatesComponent } from './others/rates/rates.component';
 import { BalanceSheetComponent } from './wallet/balance-sheet/balance-sheet.component';
+import { RegisterMerchantComponent } from './merchant/register-merchant/register-merchant.component';
+import { RegisterQrComponent } from './merchant/register-qr/register-qr.component';
+import { MerchantGroupingComponent } from './merchant/merchant-grouping/merchant-grouping.component';
+import { ManageBillersComponent } from './merchant/manage-billers/manage-billers.component';
+import { MerchantPromotionComponent } from './merchant/merchant-promotion/merchant-promotion.component';
 
 
 @NgModule({
@@ -54,6 +59,11 @@ import { BalanceSheetComponent } from './wallet/balance-sheet/balance-sheet.comp
     FeedbackComponent,
     RatesComponent,
     BalanceSheetComponent,
+    RegisterMerchantComponent,
+    RegisterQrComponent,
+    MerchantGroupingComponent,
+    ManageBillersComponent,
+    MerchantPromotionComponent,
   ],
   imports: [
     CommonModule,

@@ -1,1 +1,63 @@
-<p>txn-monitor works!</p>
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>insights</mat-icon>
+    </button>
+    <span>Transaction Monitor</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-card style="min-height:500px" class="padding no-shadow">
+    <div *ngIf="pageStatus==1">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <img src="assets/imgs/txn-monitor-bnr-1.png" style="width: 100%;">
+        </div>
+        <div class="col-lg-6 col-sm-12 pt-5">
+          <mat-card-subtitle>Click here to start monitoring</mat-card-subtitle>
+          <button mat-flat-button color="primary" class="btn-md" type="submit" (click)="pageStatus=2">
+            <mat-icon>monitor_heart</mat-icon> &nbsp;Monitor Transaction
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="pageStatus==2">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Txn Date & Time</th>
+            <th scope="col">Txn Reference</th>
+            <th scope="col">Txn Amount</th>
+            <th scope="col">Txn Type</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of txnList;let i=index" [ngClass]="t.txnStatus==='S'?'success-txn':'failed-txn'" class="align-middle">
+            <td>{{i+1}}</td>
+            <td>{{t.txnDate | date:'dd MMM yyy, hh:mm:ss a'}}</td>
+            <td>{{t.txnRef}}</td>
+            <td>$ {{global.formatAmount(t.txnAmount)}}</td>
+            <td>{{t.txnStatus==='S'?'Success':'Failed'}}</td>
+            <td>
+              <button mat-stroked-button color="primary">View Detail</button>
+            </td>
+          </tr>
+        </tbody>
+        <tbody>
+      </table>
+      <div class="text-center">
+        <button mat-stroked-button color="cyan" class="btn-md" type="submit" (click)="pageStatus=1">
+          <mat-icon>arrow_back</mat-icon> &nbsp;Back &nbsp;
+        </button>&nbsp;
+        <button mat-flat-button color="primary" class="btn-md" type="submit" (click)="initTxnList()">
+          <mat-icon>refresh</mat-icon> &nbsp;Refresh &nbsp;
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>
