@@ -1,1 +1,87 @@
-<p>register-merchant works!</p>
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>format_list_bulleted_add</mat-icon>
+    </button>
+    <span>Merchant List</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-card style="min-height:500px" class="no-shadow">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <form class="search-form">
+          <mat-form-field class="search-full-width" appearance="outline">
+            <input type="text" placeholder="Search Merchant" aria-label="Number" matInput [formControl]="myControl"
+              [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+            <button matSuffix mat-icon-button>
+              <mat-icon>search</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-lg-8 col-md-6 col-sm-12 text-right">
+        <button mat-stroked-button color="primary" class="btn-md" [routerLink]="'../add-new-merchant'">
+          <mat-icon>add</mat-icon>
+          Add New Merchant
+        </button>
+      </div>
+    </div>
+    <div class="bg-white">
+      <table class="table">
+        <thead class="bg-primary text-white">
+          <tr>
+            <th>S.No.</th>
+            <th>Merchant ID</th>
+            <th>Merchant Name</th>
+            <th>Business Name</th>
+            <th>Date Created</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let w of billers;let i=index" class="align-middle">
+            <td>{{i+1}}</td>
+            <td>{{w.id}}</td>
+            <td>{{w.name}}</td>
+            <td>{{w.business}}</td>
+            <td>{{w.date | date:'dd MMM, yyyy hh:mm:ss a'}}</td>
+            <td>
+              <button mat-icon-button>
+                <mat-icon color="primary">visibility</mat-icon>
+              </button> &nbsp;
+              <button mat-icon-button>
+                <mat-icon color="yellow">edit_note</mat-icon>
+              </button> &nbsp;
+              <button mat-icon-button>
+                <mat-icon color="warn">delete_forever</mat-icon>
+              </button> &nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-right pe-3">
+      <button mat-icon-button>
+        <mat-icon color="primary">skip_previous</mat-icon>
+      </button> &nbsp;
+      <button mat-icon-button>
+        <mat-icon color="primary">keyboard_double_arrow_left</mat-icon>
+      </button> &nbsp;
+      5 of {{billers.length}}
+      <button mat-icon-button>
+        <mat-icon color="primary">keyboard_double_arrow_right</mat-icon>
+      </button> &nbsp;
+      <button mat-icon-button>
+        <mat-icon color="primary">skip_next</mat-icon>
+      </button> &nbsp;
+    </div>
+  </mat-card>
+</div>
