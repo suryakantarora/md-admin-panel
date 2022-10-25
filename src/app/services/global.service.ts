@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class GlobalService {
   xchApi = 'zOnObMAEXIcYjRUhWIRBmnLiFZYjdOoS';
   pageTitle: any = 'Dashboard';
+  userProfile='m';
   constructor() { }
 
   public formatAmount(num: any) {

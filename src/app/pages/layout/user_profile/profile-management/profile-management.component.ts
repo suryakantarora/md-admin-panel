@@ -9,12 +9,12 @@ export class ProfileManagementComponent implements OnInit {
   selectedTab=0;
   displayedColumns = ['position', 'name', 'role', 'date', 'action'];
   dataSource = ELEMENT_DATA;
-  
+
   constructor() { }
 
   ngOnInit(): void {
   }
-  
+
 }
 const today= new Date().toISOString();
 const ELEMENT_DATA: PeriodicElement[] = [

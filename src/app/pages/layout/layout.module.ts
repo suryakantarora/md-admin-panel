@@ -22,7 +22,7 @@ import { ProfileManagementComponent } from './user_profile/profile-management/pr
 import { UserManagementComponent } from './user_profile/user-management/user-management.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { UserDetailComponent } from './user-detail/user-detail.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewsComponent } from './others/news/news.component';
 import { PromotionsComponent } from './others/promotions/promotions.component';
 import { FeedbackComponent } from './others/feedback/feedback.component';
@@ -33,9 +33,21 @@ import { RegisterQrComponent } from './merchant/register-qr/register-qr.componen
 import { MerchantGroupingComponent } from './merchant/merchant-grouping/merchant-grouping.component';
 import { ManageBillersComponent } from './merchant/manage-billers/manage-billers.component';
 import { MerchantPromotionComponent } from './merchant/merchant-promotion/merchant-promotion.component';
+import { AddBillerComponent } from './bill/add-biller/add-biller.component';
+import { ManageBillerComponent } from './bill/manage-biller/manage-biller.component';
+import { Page404Component } from './other/page404/page404.component';
+import { AddNewMerchantComponent } from './merchant/add-new-merchant/add-new-merchant.component';
 
 
 @NgModule({
+  imports: [
+    CommonModule,
+    LayoutRoutingModule,
+    MaterialModule,
+    NgApexchartsModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     LayoutComponent,
     NavigationComponent,
@@ -64,14 +76,10 @@ import { MerchantPromotionComponent } from './merchant/merchant-promotion/mercha
     MerchantGroupingComponent,
     ManageBillersComponent,
     MerchantPromotionComponent,
-  ],
-  imports: [
-    CommonModule,
-    LayoutRoutingModule,
-    MaterialModule,
-    NgApexchartsModule,
-    FormsModule
-
+    AddBillerComponent,
+    ManageBillerComponent,
+    Page404Component,
+    AddNewMerchantComponent,
   ], providers: [
     {
       provide: MatDialogRef,

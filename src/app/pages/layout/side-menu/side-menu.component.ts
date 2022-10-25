@@ -51,12 +51,12 @@ export class SideMenuComponent implements OnInit {
       }, {
         menuId: 'M02', active: false, name: 'Merchant Management', icon: 'store',
         child: [
-          { menuId: 'SM2001', active: false, name: 'Merchant Registration' },
-          { menuId: 'SM2002', active: false, name: 'QR Code Registration' },
-          { menuId: 'SM2003', active: false, name: 'Merchant grouping' },
-          { menuId: 'SM2004', active: false, name: 'Biller Management' },
-          { menuId: 'SM2005', active: false, name: 'Topup Wallet' },
-          { menuId: 'SM2006', active: false, name: 'Promotion updates' },
+          { menuId: 'SM2001', active: false, name: 'Merchant Registration', link: 'register-merchant' },
+          { menuId: 'SM2002', active: false, name: 'QR Code Registration', link: 'register-qr' },
+          { menuId: 'SM2003', active: false, name: 'Merchant grouping', link: 'merchant-grouping' },
+          { menuId: 'SM2004', active: false, name: 'Biller Management', link: 'manage-billers' },
+          { menuId: 'SM2005', active: false, name: 'Topup Wallet', link: 'topup-wallet' },
+          { menuId: 'SM2006', active: false, name: 'Promotion updates', link: 'merchant-promotion' },
         ]
       }, {
         menuId: 'M03', active: false, name: 'Loan Management', icon: 'real_estate_agent',
@@ -69,7 +69,13 @@ export class SideMenuComponent implements OnInit {
           { menuId: 'SM3006', active: false, name: 'Loan Closure' },
         ]
       }, {
-        menuId: 'M04', active: false, name: 'Exchange Rate', icon: 'currency_exchange', child: []
+        menuId: 'M04', active: false, name: 'Biller Management', icon: 'social_distance',
+        child: [
+          { menuId: 'SM4001', active: false, name: 'Add New Biller', link:'add-biller' },
+          { menuId: 'SM4002', active: false, name: 'Manage Billers', link:'manage-biller' },
+        ]
+      }, {
+        menuId: 'M05', active: false, name: 'Exchange Rate', icon: 'currency_exchange', child: []
       }, {
         menuId: 'M08', active: false, name: 'Reports', icon: 'summarize',
         child: [
