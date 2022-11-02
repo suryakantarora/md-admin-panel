@@ -1,0 +1,57 @@
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>settings</mat-icon>
+    </button>
+    <span>Loan Configuration</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-card style="min-height:500px" class="no-shadow">
+    <div>
+      <div class="row">
+        <div class="col-6">
+          <img src="assets/imgs/loan/loan-config.png" class="full-width py-5 mt-5">
+        </div>
+        <div class="col-6">
+          <div class="row text-center">
+            <div class="col-xl-6 col-sm-6 mb-3">
+              <div class="bg-white rounded shadow-sm py-5 px-2 card-btn" routerLink="../config-tenure">
+                <img src="https://cdn-icons-png.flaticon.com/512/1149/1149445.png"
+                  class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h2 class="mb-0">Tenure & Interest Rate</h2>
+                <span class="small text-uppercase text-muted">Configure Tenure And Interest Rate </span>
+              </div>
+            </div>
+            <div class="col-xl-6 col-sm-6 mb-3">
+              <div class="bg-white rounded shadow-sm py-5 px-2 card-btn" routerLink="../blacklist-customer">
+                <img src="https://cdn-icons-png.flaticon.com/512/5509/5509357.png"
+                  class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h2 class="mb-0">Customer Blacklist</h2>
+                <span class="small text-uppercase text-muted">Blacklist inappropriate customer</span>
+              </div>
+            </div>
+            <div class="col-xl-6 col-sm-6 mb-3">
+              <div class="bg-white rounded shadow-sm py-5 px-2 card-btn" routerLink="../config-loanfee">
+                <img src="https://cdn-icons-png.flaticon.com/512/3932/3932368.png"
+                  class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h2 class="mb-0">Configure Fee</h2>
+                <span class="small text-uppercase text-muted">Late pay & Pre closure fee </span>
+              </div>
+            </div>
+            <div class="col-xl-6 col-sm-6 mb-3">
+              <div class="bg-white rounded shadow-sm py-5 px-2 card-btn" routerLink="../config-maxloan">
+                <img src="https://cdn-icons-png.flaticon.com/512/3230/3230065.png"
+                  class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                <h2 class="mb-0">Max Loan Configuration</h2>
+                <span class="small text-uppercase text-muted">Configure maximum loan </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -11,6 +11,7 @@
   </mat-toolbar>
   <mat-card style="min-height:500px" class="no-shadow">
     <div class="row">
+      <mat-card-subtitle>Personal Details</mat-card-subtitle>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Merchant Category</mat-label>
@@ -27,37 +28,81 @@
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Business Name</mat-label>
+          <mat-label>Merchant Name</mat-label>
           <mat-icon matPrefix class="prefix-icon" color="primary">storefront</mat-icon>
-          <input type="text" maxlength="100" matInput>
+          <input type="text" maxlength="100" matInput required>
         </mat-form-field>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Business Location</mat-label>
+          <mat-label>Primary Location</mat-label>
           <mat-icon matPrefix class="prefix-icon" color="primary">pin_drop</mat-icon>
-          <input type="text" maxlength="100" matInput>
+          <input type="text" maxlength="100" matInput required>
         </mat-form-field>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Mobile Number</mat-label>
           <mat-icon matPrefix class="prefix-icon" color="primary">aod</mat-icon>
-          <input type="text" maxlength="100" matInput>
+          <input type="text" maxlength="100" matInput required>
         </mat-form-field>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Email ID</mat-label>
           <mat-icon matPrefix class="prefix-icon" color="primary">mail</mat-icon>
-          <input type="text" maxlength="100" matInput>
+          <input type="text" maxlength="100" matInput required>
         </mat-form-field>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Website</mat-label>
+          <mat-icon matPrefix class="prefix-icon" color="primary">web</mat-icon>
+          <input type="text" maxlength="100" matInput required>
+        </mat-form-field>
+      </div>
+
+      <mat-card-subtitle>Merchant Location Details</mat-card-subtitle>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Country</mat-label>
           <mat-icon matPrefix class="prefix-icon" color="primary">public</mat-icon>
-          <input type="text" maxlength="100" matInput>
+          <input type="text" maxlength="100" matInput required>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>State/Province</mat-label>
+          <mat-icon matPrefix class="prefix-icon" color="primary">apartment</mat-icon>
+          <input type="text" maxlength="100" matInput required>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>District</mat-label>
+          <mat-icon matPrefix class="prefix-icon" color="primary">festival</mat-icon>
+          <input type="text" maxlength="100" matInput required>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>City</mat-label>
+          <mat-icon matPrefix class="prefix-icon" color="primary">domain</mat-icon>
+          <input type="text" maxlength="100" matInput required>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Village/Street</mat-label>
+          <mat-icon matPrefix class="prefix-icon" color="primary">villa</mat-icon>
+          <input type="text" maxlength="100" matInput required>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Zip Code</mat-label>
+          <mat-icon matPrefix class="prefix-icon" color="primary">my_location</mat-icon>
+          <input type="text" maxlength="100" matInput required>
         </mat-form-field>
       </div>
     </div>

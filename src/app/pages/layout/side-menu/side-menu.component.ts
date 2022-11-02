@@ -57,16 +57,17 @@ export class SideMenuComponent implements OnInit {
           { menuId: 'SM2004', active: false, name: 'Biller Management', link: 'manage-billers' },
           { menuId: 'SM2005', active: false, name: 'Topup Wallet', link: 'topup-wallet' },
           { menuId: 'SM2006', active: false, name: 'Promotion updates', link: 'merchant-promotion' },
+          { menuId: 'SM2007', active: false, name: 'Manage MCC', link: 'mcc' },
         ]
       }, {
         menuId: 'M03', active: false, name: 'Loan Management', icon: 'real_estate_agent',
         child: [
-          { menuId: 'SM3001', active: false, name: 'Loan Request/apply' },
-          { menuId: 'SM3002', active: false, name: 'Loan sanction' },
-          { menuId: 'SM3003', active: false, name: 'Loan Configuration' },
-          { menuId: 'SM3004', active: false, name: 'Loan Repayment' },
-          { menuId: 'SM3005', active: false, name: 'Loan Disbursement' },
-          { menuId: 'SM3006', active: false, name: 'Loan Closure' },
+          { menuId: 'SM3001', active: false, name: 'Loan Apply Request', link:'loan-request' },
+          { menuId: 'SM3002', active: false, name: 'Loan Sanction', link:'loan-sanction' },
+          { menuId: 'SM3003', active: false, name: 'Loan Disbursement', link:'loan-disbursement' },
+          { menuId: 'SM3004', active: false, name: 'Loan Configuration', link:'loan-configuration' },
+          { menuId: 'SM3005', active: false, name: 'Loan Repayment', link:'loan-repayment' },
+          { menuId: 'SM3006', active: false, name: 'Loan Closure', link:'loan-closure' },
         ]
       }, {
         menuId: 'M04', active: false, name: 'Biller Management', icon: 'social_distance',

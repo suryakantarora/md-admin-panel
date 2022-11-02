@@ -1,0 +1,273 @@
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon *ngIf="pageStatus==1">format_list_bulleted_add</mat-icon>
+      <mat-icon *ngIf="pageStatus==2">contact_emergency</mat-icon>
+    </button>
+    <span *ngIf="pageStatus==1">Loan Request List</span>
+    <span *ngIf="pageStatus==2">Loan Request Details</span>
+    <span class="spacer"></span>
+    <button mat-icon-button *ngIf="pageStatus==1">
+      <mat-icon>info</mat-icon>
+    </button>
+    <button mat-stroked-button *ngIf="pageStatus==2" (click)="pageStatus=1">
+      Back
+    </button>
+  </mat-toolbar>
+  <mat-card style="min-height:500px" class="no-shadow">
+    <div *ngIf="pageStatus==1">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Search Loan Request</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">manage_search</mat-icon>
+            <input type="text" maxlength="20" matInput required placeholder="Enter Loan ID">
+            <button matSuffix mat-icon-button>
+              <mat-icon>search</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="loan-list">
+        <table class="table">
+          <thead class="bg-primary text-white">
+            <tr>
+              <th>S.No.</th>
+              <th>Loan Request ID</th>
+              <th>Loan Amount</th>
+              <th>Customer Name</th>
+              <th>Request Mode</th>
+              <th>Status</th>
+              <th>Date & Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let l of filterLoanList;let i=index" class="align-middle">
+              <td>{{i+1}}</td>
+              <td>{{l.id}}</td>
+              <td>{{l.amt}}</td>
+              <td>{{l.name}}</td>
+              <td>{{getMode(l.mode)}}</td>
+              <td>New</td>
+              <td>{{l.date | date:'dd MMM, yyyy hh:mm:ss a'}}</td>
+              <td>
+                <button mat-icon-button (click)="showDetail(l, false)">
+                  <mat-icon color="primary">visibility</mat-icon>
+                </button> &nbsp;
+                <!-- <button mat-icon-button (click)="showDetail(l, false)">
+                  <mat-icon color="yellow">edit_note</mat-icon>
+                </button> &nbsp; -->
+                <!-- <button mat-icon-button>
+                  <mat-icon color="warn">delete_forever</mat-icon>
+                </button> &nbsp; -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-6 text-left">
+          <mat-form-field appearance="outline">
+            <mat-label>Loan List Count</mat-label>
+            <mat-select [(ngModel)]="rowCount" (ngModelChange)="initFilterLoanList(rowCount)">
+              <mat-option [value]="5">5</mat-option>
+              <mat-option [value]="10">10</mat-option>
+              <mat-option [value]="15">15</mat-option>
+              <mat-option [value]="20">20</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-6 text-right pe-3">
+          <button mat-icon-button>
+            <mat-icon color="primary">skip_previous</mat-icon>
+          </button> &nbsp;
+          <button mat-icon-button>
+            <mat-icon color="primary">keyboard_double_arrow_left</mat-icon>
+          </button> &nbsp;
+          {{rowCount}} of {{this.loanList.length}}
+          <button mat-icon-button>
+            <mat-icon color="primary">keyboard_double_arrow_right</mat-icon>
+          </button> &nbsp;
+          <button mat-icon-button>
+            <mat-icon color="primary">skip_next</mat-icon>
+          </button> &nbsp;
+        </div>
+      </div>
+    </div>
+    <div *ngIf="pageStatus==2">
+      <mat-card-subtitle>Customer Details</mat-card-subtitle>
+      <div class="row" *ngIf="loanDetail">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Loan Request ID</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">perm_identity</mat-icon>
+            <input type="text" matInput required readonly [value]="loanDetail.id">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Loan Type</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">type_specimen</mat-icon>
+            <input type="text" matInput required readonly [value]="loanDetail.type">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Request Date</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+            <input type="text" matInput required readonly value="{{loanDetail.date | date:'dd MMM, yyyy hh:mm:ss a'}}">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Customer Name</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+            <input type="text" matInput required readonly [value]="loanDetail.name">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Customer DOB</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+            <input type="text" matInput required readonly value="{{loanDetail.date | date:'dd MMM, yyyy'}}">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label> Profession</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">work_outline</mat-icon>
+            <input type="text" matInput required readonly value="Software Engineer">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label> Profession Type</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">work_history</mat-icon>
+            <input type="text" matInput required readonly value="Salaried">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">phone_iphone</mat-icon>
+            <input type="text" matInput required readonly value="+91-8083705398">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email ID</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">mail</mat-icon>
+            <input type="text" matInput required readonly value="surya@finotech.com">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Yearly Income</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">monetization_on</mat-icon>
+            <input type="text" matInput required readonly value="USD 10,000">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Loan Amount</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">request_quote</mat-icon>
+            <input type="text" matInput required readonly value="USD 10,000">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Loan Tenure</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="24 Months">
+          </mat-form-field>
+        </div>
+        <mat-card-subtitle>Customer Address Details</mat-card-subtitle>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Door No.</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="1/24">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Street</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="Erka-Colony">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Village</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="Erka">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Locality</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="Amba">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>City</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="Kutumba">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>District</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="Aurangabad">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>State/Province</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="Aurangabad">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Country</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="India">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Zip/PIN Code</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">pin</mat-icon>
+            <input type="text" matInput required readonly value="123456">
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>KYC ID Proof</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="Passport">
+          </mat-form-field>
+          <img src="assets/imgs/passport-sample-man.png" class="full-width">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>KYC Address Proof</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">punch_clock</mat-icon>
+            <input type="text" matInput required readonly value="Aadhar Card">
+          </mat-form-field>
+          <img src="assets/imgs/aadhar-card-sample.jpg" class="full-width">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <button mat-flat-button class="btn-md bg-danger text-white mb-2 full-width" (click)="submit(0)">Reject Request</button>
+          <button mat-flat-button color="primary" class="btn-md full-width" (click)="submit(1)">Submit for verification</button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

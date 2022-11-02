@@ -1,0 +1,13 @@
+$primary: #3F51B5;
+$secondary: #FF8F00;
+$light: #eee;
+$danger: #d30000;
+$dark: #283593;
+
+
+mat-icon.mat-card-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 35px;
+    color: $primary;
+}

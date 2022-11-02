@@ -1,76 +1,253 @@
-<div class="grid-container">
-  <mat-card class="card">
-    <mat-card-header>
-      <mat-icon mat-card-avatar>person</mat-icon>
-      <h2 mat-card-title class="primary">Profile Management</h2>
-    </mat-card-header>
-  </mat-card>
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>manage_accounts</mat-icon>
+    </button>
+    <span>Profile Management</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
 </div>
 <div class="content-container">
-  <mat-card class="card">
-    <mat-tab-group [(selectedIndex)]="selectedTab">
+  <div class="md-card bs round">
+    <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="onTabChanged($event)">
       <mat-tab>
         <ng-template mat-tab-label>
           <span class="primary">Existing Profiles</span>
         </ng-template>
-        <div class="tab-contents">
-          <section class="table-container mat-elevation-z8" tabindex="0">
-            <table mat-table [dataSource]="dataSource">
-
-              <!-- Position Column -->
-              <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-              </ng-container>
-
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-              </ng-container>
-
-              <!-- Name Column -->
-              <ng-container matColumnDef="role">
-                <th mat-header-cell *matHeaderCellDef> Role </th>
-                <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-              </ng-container>
-
-              <!-- Weight Column -->
-              <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef> Date Created </th>
-                <td mat-cell *matCellDef="let element"> {{element.date | date:'MMM dd, yyyy hh:mm a'}} </td>
-              </ng-container>
-
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button>
+        <mat-card class="tab-contents no-shadow pb-2">
+          <div>
+            <div class="bg-white">
+              <table class="table">
+                <thead class="bg-primary text-white">
+                  <tr>
+                    <th>S.No.</th>
+                    <th>Profile ID</th>
+                    <th>Profile Name</th>
+                    <th>Role </th>
+                    <th>Status</th>
+                    <th>Date Created</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let p of filterProfileList;let i=index" class="align-middle">
+                    <td>{{i+1}}</td>
+                    <td>{{p.id}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.role}}</td>
+                    <td>{{p.status==='A'?'Active':'Pending'}}</td>
+                    <td>{{p.date | date:'dd MMM, yyyy hh:mm:ss a'}}</td>
+                    <td>
+                      <button mat-icon-button>
                         <mat-icon color="primary">visibility</mat-icon>
-                    </button> &nbsp;
-                    <button mat-icon-button>
+                      </button> &nbsp;
+                      <button mat-icon-button>
                         <mat-icon color="yellow">edit_note</mat-icon>
-                    </button> &nbsp;
-                    <button mat-icon-button>
+                      </button> &nbsp;
+                      <button mat-icon-button>
                         <mat-icon color="warn">delete_forever</mat-icon>
-                    </button> &nbsp;
-                </td>
-              </ng-container>
+                      </button> &nbsp;
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="table-header"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-          </section>
-        </div>
+            <div class="row">
+              <div class="col-6 text-left">
+                <mat-form-field appearance="outline">
+                  <mat-label>Show Profile List</mat-label>
+                  <mat-select [(ngModel)]="rowLength" (ngModelChange)="filteredProfileList(rowLength)">
+                    <mat-option [value]="5">5</mat-option>
+                    <mat-option [value]="10">10</mat-option>
+                    <mat-option [value]="15">15</mat-option>
+                    <mat-option [value]="20">20</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-6 text-right pe-3">
+                <button mat-icon-button>
+                  <mat-icon color="primary">skip_previous</mat-icon>
+                </button> &nbsp;
+                <button mat-icon-button>
+                  <mat-icon color="primary">keyboard_double_arrow_left</mat-icon>
+                </button> &nbsp;
+                {{rowLength}} of {{profileList.length}}
+                <button mat-icon-button>
+                  <mat-icon color="primary">keyboard_double_arrow_right</mat-icon>
+                </button> &nbsp;
+                <button mat-icon-button>
+                  <mat-icon color="primary">skip_next</mat-icon>
+                </button> &nbsp;
+              </div>
+            </div>
+          </div>
+        </mat-card>
       </mat-tab>
-      <mat-tab>
+
+      <mat-tab [disabled]="globalServce.userProfile === 'C'">
         <ng-template mat-tab-label>
-          <span class="primary">Add New Profile</span>
+          <span class="primary">{{editProfileLabel}}</span>
         </ng-template>
-        <div class="tab-contents">
-          Add New Profile
-        </div>
+        <mat-card class="tab-contents">
+          <form class="screen">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Profile Name</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                  <input matInput type="text" placeholder="profile name" name="profileName" appearance="outline"
+                    [(ngModel)]="profile.profileName">
+                </mat-form-field>
+              </div>
+
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>User Type</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                  <mat-select required [(ngModel)]="profile.profileType" name="userType">
+                    <mat-option value="M">Maker</mat-option>
+                    <mat-option value="C">Checker</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+                  <mat-label>Profile Expiry</mat-label>
+                  <input matInput [matDatepicker]="datepicker" name="datePicker" required
+                    [(ngModel)]="profile.profileExpiry">
+                  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                  <mat-datepicker #datepicker>
+                    <mat-datepicker-actions>
+                      <button mat-button matDatepickerCancel>Cancel</button>
+                      <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    </mat-datepicker-actions>
+                  </mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Description</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">edit_note</mat-icon>
+                  <input matInput placeholder="profile Description" name="text" required autocomplete="off"
+                    [(ngModel)]="profile.description">
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+
+
+
+
+
+          <div class="row">
+            <div class="padding text-right mt-3">
+              <button mat-stroked-button color="primary" class="btn-md">Reset</button> &nbsp;
+              <button mat-flat-button color="primary" class="btn-md" (click)="showAlert()">Create Profile</button>
+            </div>
+          </div>
+
+        </mat-card>
+      </mat-tab>
+
+      <mat-tab [disabled]="disableViewTab">
+        <ng-template mat-tab-label>
+          <span class="primary">View Profile</span>
+        </ng-template>
+        <mat-card class="tab-contents">
+          <form class="full-width">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Profile Name</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                  <input matInput type="text" placeholder="profile name" readonly="true" name="viewProfileName"
+                    appearance="outline" [(ngModel)]="selectedProfile.profileName">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>User Type</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                  <mat-select required [(ngModel)]="selectedProfile.profileType" name="userType" disabled="true">
+                    <mat-option value="m">Maker</mat-option>
+                    <mat-option value="c">Checker</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+                  <mat-label>Profile Expiry</mat-label>
+                  <input matInput readonly="true" name="viewDatePicker" required
+                    [(ngModel)]="selectedProfile.profileExpiry">
+                </mat-form-field>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Description</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">edit_note</mat-icon>
+                  <input matInput placeholder="profile Description" name="text" readonly="true" required
+                    autocomplete="off" [(ngModel)]="selectedProfile.description">
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+          <form>
+            <mat-card-subtitle>Operations</mat-card-subtitle>
+            <div class="row">
+              <div class="col-xl-6 col-md-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Select an action</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">all_out</mat-icon>
+                  <mat-select required [(ngModel)]="profile.profileType" name="action">
+                    <mat-option value="DELETE">Delete Profile</mat-option>
+                    <mat-option value="EDIT">Edit Profile</mat-option>
+                    <mat-option value="DAP">Delete Authorize Profile</mat-option>
+                    <mat-option value="DDAP">Delete De-Authorize Profile</mat-option>
+                    <mat-option value="AP">Authorize Profile</mat-option>
+                    <mat-option value="DAP">De-Authorize Profile</mat-option>
+                    <mat-option value="AUP">Authorize Update Profile</mat-option>
+                    <mat-option value="DAUP">De-Authorize Update Profile</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Reason</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">edit_note</mat-icon>
+                  <input matInput placeholder="Enter reason" name="text" required />
+                </mat-form-field>
+              </div>
+              <div class="col-lg-12 col-md-12 text-center">
+                <button mat-stroked-button class="btn-md">Reset</button>
+                <button mat-flat-button color="primary" class="btn-md">Submit</button>
+              </div>
+            </div>
+          </form>
+          <!-- <div *ngIf="globalServce.userProfile === 'M'">
+            <div class="padding  mt-3">
+              <button mat-flat-button color="primary" class="btn-md">Delete Profile</button>
+              <button mat-flat-button color="primary" class="btn-md">Edit profile</button>
+              <button mat-flat-button color="primary" (click)="profileOperation(1)" class="btn-md">Delete Authorized</button>
+              <button mat-flat-button color="primary" (click)="profileOperation(2)" class="btn-md">Delete De-Authorized</button>
+              <button mat-flat-button color="primary" (click)="profileOperation(3)" class="btn-md">Profile Authorized</button>
+              <button mat-flat-button color="primary" (click)="profileOperation(4)" class="btn-md">Profile De-Authorized</button>
+              <button mat-flat-button color="primary" (click)="profileOperation(5)" class="btn-md">Update Authorized</button>
+              <button mat-flat-button color="primary" (click)="profileOperation(6)" class="btn-md">Update De-Authorized</button>
+            </div>
+          </div> -->
+        </mat-card>
       </mat-tab>
     </mat-tab-group>
-  </mat-card>
+  </div>
 </div>

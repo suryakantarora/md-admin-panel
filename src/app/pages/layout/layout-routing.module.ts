@@ -6,8 +6,19 @@ import { AnalyticsComponent } from './dashboard/analytics/analytics.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExecutiveComponent } from './dashboard/executive/executive.component';
 import { LayoutComponent } from './layout.component';
+import { BlacklistCustomerComponent } from './loan/config/blacklist-customer/blacklist-customer.component';
+import { ConfigLoanfeeComponent } from './loan/config/config-loanfee/config-loanfee.component';
+import { ConfigMaxloanComponent } from './loan/config/config-maxloan/config-maxloan.component';
+import { ConfigTenureComponent } from './loan/config/config-tenure/config-tenure.component';
+import { LoanClosureComponent } from './loan/loan-closure/loan-closure.component';
+import { LoanConfigurationComponent } from './loan/loan-configuration/loan-configuration.component';
+import { LoanDisbursementComponent } from './loan/loan-disbursement/loan-disbursement.component';
+import { LoanRepaymentComponent } from './loan/loan-repayment/loan-repayment.component';
+import { LoanRequestComponent } from './loan/loan-request/loan-request.component';
+import { LoanSanctionComponent } from './loan/loan-sanction/loan-sanction.component';
 import { AddNewMerchantComponent } from './merchant/add-new-merchant/add-new-merchant.component';
 import { ManageBillersComponent } from './merchant/manage-billers/manage-billers.component';
+import { MccComponent } from './merchant/mcc/mcc.component';
 import { MerchantGroupingComponent } from './merchant/merchant-grouping/merchant-grouping.component';
 import { MerchantPromotionComponent } from './merchant/merchant-promotion/merchant-promotion.component';
 import { RegisterMerchantComponent } from './merchant/register-merchant/register-merchant.component';
@@ -59,6 +70,18 @@ const routes: Routes = [
       { path: 'merchant-grouping', component: MerchantGroupingComponent },
       { path: 'manage-billers', component: ManageBillersComponent },
       { path: 'add-new-merchant', component: AddNewMerchantComponent },
+      { path: 'mcc', component: MccComponent },
+      {path: 'loan-request', component: LoanRequestComponent},
+      {path: 'loan-sanction', component: LoanSanctionComponent},
+      {path: 'loan-configuration', component: LoanConfigurationComponent},
+      {path: 'loan-repayment', component: LoanRepaymentComponent},
+      {path: 'loan-disbursement', component: LoanDisbursementComponent},
+      {path: 'loan-closure', component: LoanClosureComponent},
+      {path: 'blacklist-customer', component: BlacklistCustomerComponent},
+      {path: 'config-maxloan', component: ConfigMaxloanComponent},
+      {path: 'config-loanfee', component: ConfigLoanfeeComponent},
+      {path: 'config-tenure', component: ConfigTenureComponent},
+
      /*  { path: '**', component: Page404Component } */
     ]
   }

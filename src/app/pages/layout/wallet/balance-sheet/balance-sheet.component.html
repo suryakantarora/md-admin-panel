@@ -1,1 +1,147 @@
-<p>balance-sheet works!</p>
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>account_balance_wallet</mat-icon>
+    </button>
+    <span>Wallet Balance Sheet</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>save_alt</mat-icon>
+        <span>Download Excel</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>picture_as_pdf</mat-icon>
+        <span>Download PDF</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+  <mat-card style="min-height:500px" class="no-shadow">
+    <div class="row pb-2" *ngIf="pageStatus==1">
+      <mat-card-subtitle>Select a date range</mat-card-subtitle>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <form class="search-form">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>From Date</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+            <input matInput [matDatepicker]="fromdate" (dateChange)="onChangeDate('FROM', 'change', $event)" readonly placeholder="Select from date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
+            <mat-datepicker #fromdate></mat-datepicker>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <form class="search-form">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>To Date</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+            <input matInput [matDatepicker]="todate" (dateChange)="onChangeDate('TO', 'change', $event)" readonly placeholder="Select to date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
+            <mat-datepicker #todate></mat-datepicker>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-12 text-center p-3">
+        <button mat-stroked-button class="btn-md" color="primary">
+          <mat-icon>clear</mat-icon> &nbsp; Reset
+        </button>
+        <button mat-flat-button class="btn-md" color="primary" (click)="validateDate()">
+          <mat-icon>search</mat-icon> &nbsp; Search Transaction
+        </button>
+      </div>
+    </div>
+    <br>
+    <div class="bg-white" *ngIf="pageStatus==2">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>From Date</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+            <input matInput readonly value="{{fromDate| date:'MM-dd-yyyy'}}" required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>To Date</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+            <input matInput readonly value="{{fromDate| date:'MM-dd-yyyy'}}" required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Opening Balance</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">account_balance_wallet</mat-icon>
+            <input matInput readonly value="{{'USD ' + global.formatAmount(openingBalance)}}" required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Closing Balance</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">account_balance_wallet</mat-icon>
+            <input matInput readonly value="{{'USD ' + global.formatAmount(closingBalance)}}" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <table class="table">
+        <thead class="bg-primary text-white">
+          <tr>
+            <th>S.No.</th>
+            <th>Date & Time</th>
+            <th>Txn Reference</th>
+            <th>Txn Amount</th>
+            <th>Txn Type</th>
+            <th>Customer Account</th>
+            <th>Pool Account</th>
+            <th>Provider</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let w of filterSheetList;let i=index" class="align-middle">
+            <td>{{i+1}}</td>
+            <td>{{w.date | date:'dd-MM-yyyy hh:mm:ss a'}}</td>
+            <td>{{w.ref}}</td>
+            <td [ngClass]="w.txnType==='CR'?'text-success':'text-danger'" class="fw-bold">
+              {{'USD ' + global.formatAmount(w.amount)}}</td>
+            <td [ngClass]="w.txnType==='CR'?'text-success':'text-danger'" class="fw-bold">{{w.txnType}}</td>
+            <td>{{w.custAcc}}</td>
+            <td>{{w.poolAcc}}</td>
+            <td>{{w.provider}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row" *ngIf="pageStatus==2">
+      <div class="col-6 text-left">
+        <mat-form-field appearance="outline">
+          <mat-label>Show Wallet Sheet</mat-label>
+          <mat-select [(ngModel)]="rowCount" (ngModelChange)="initFilterSheetList(rowCount)">
+            <mat-option [value]="5">5</mat-option>
+            <mat-option [value]="10">10</mat-option>
+            <mat-option [value]="15">15</mat-option>
+            <mat-option [value]="20">20</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6 text-right pe-3">
+        <button mat-icon-button>
+          <mat-icon color="primary">skip_previous</mat-icon>
+        </button> &nbsp;
+        <button mat-icon-button>
+          <mat-icon color="primary">keyboard_double_arrow_left</mat-icon>
+        </button> &nbsp;
+        {{rowCount}} of {{sheetList.length}}
+        <button mat-icon-button>
+          <mat-icon color="primary">keyboard_double_arrow_right</mat-icon>
+        </button> &nbsp;
+        <button mat-icon-button>
+          <mat-icon color="primary">skip_next</mat-icon>
+        </button> &nbsp;
+      </div>
+    </div>
+  </mat-card>
+</div>

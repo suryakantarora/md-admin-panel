@@ -5,8 +5,12 @@
     </button>
     <span>Transaction Monitor</span>
     <span class="spacer"></span>
-    <button mat-icon-button>
+    <button mat-icon-button *ngIf="pageStatus==1">
       <mat-icon>info</mat-icon>
+    </button>
+    <button mat-raised-button *ngIf="pageStatus==2">
+      <mat-icon>sync</mat-icon>
+      Refresh
     </button>
   </mat-toolbar>
 
@@ -44,7 +48,7 @@
             <td>$ {{global.formatAmount(t.txnAmount)}}</td>
             <td>{{t.txnStatus==='S'?'Success':'Failed'}}</td>
             <td>
-              <button mat-stroked-button color="primary">View Detail</button>
+              <button mat-raised-button>View Detail</button>
             </td>
           </tr>
         </tbody>

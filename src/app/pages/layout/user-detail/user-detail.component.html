@@ -64,6 +64,7 @@
             <div class="row">
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
+                  <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
                   <mat-label>First Name</mat-label>
                   <input matInput [value]="user.firstName" name="firstname" required autocomplete="off" readonly>
                 </mat-form-field>
@@ -71,48 +72,56 @@
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Last Name</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
                   <input matInput [value]="user.lastName" name="lastname" required autocomplete="off" readonly>
                 </mat-form-field>
               </div>
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Mobile Number</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">phone_iphone</mat-icon>
                   <input matInput [value]="user.mobile" name="mobile" required autocomplete="off" readonly>
                 </mat-form-field>
               </div>
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Email ID</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">mail</mat-icon>
                   <input matInput [value]="user.email" name="email" required autocomplete="off" readonly>
                 </mat-form-field>
               </div>
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Date of birth</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
                   <input matInput [value]="user.dob" name="dob" required autocomplete="off" readonly>
                 </mat-form-field>
               </div>
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Gender</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">people</mat-icon>
                   <input matInput [value]="user.gender" name="gender" required autocomplete="off" readonly>
                 </mat-form-field>
               </div>
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>User Type</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">account_box</mat-icon>
                   <input matInput [value]="user.userType" name="utype" required autocomplete="off" readonly>
                 </mat-form-field>
               </div>
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>User Profile</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">switch_account</mat-icon>
                   <input matInput [value]="user.userProfile" name="utype" required autocomplete="off" readonly>
                 </mat-form-field>
               </div>
               <div class="col-xl-6 col-md-6 col-sm-12">
                 <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Last Login</mat-label>
+                  <mat-icon matPrefix class="prefix-icon" color="primary">access_time</mat-icon>
                   <input matInput value="{{today | date:'dd MMM, yyyy hh:mm:ss a'}}" name="utype" required autocomplete="off" readonly>
                 </mat-form-field>
               </div>

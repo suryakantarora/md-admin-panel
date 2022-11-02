@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LayoutRoutingModule } from './layout-routing.module';
@@ -37,6 +37,17 @@ import { AddBillerComponent } from './bill/add-biller/add-biller.component';
 import { ManageBillerComponent } from './bill/manage-biller/manage-biller.component';
 import { Page404Component } from './other/page404/page404.component';
 import { AddNewMerchantComponent } from './merchant/add-new-merchant/add-new-merchant.component';
+import { MccComponent } from './merchant/mcc/mcc.component';
+import { LoanRequestComponent } from './loan/loan-request/loan-request.component';
+import { LoanSanctionComponent } from './loan/loan-sanction/loan-sanction.component';
+import { LoanConfigurationComponent } from './loan/loan-configuration/loan-configuration.component';
+import { LoanRepaymentComponent } from './loan/loan-repayment/loan-repayment.component';
+import { LoanDisbursementComponent } from './loan/loan-disbursement/loan-disbursement.component';
+import { LoanClosureComponent } from './loan/loan-closure/loan-closure.component';
+import { BlacklistCustomerComponent } from './loan/config/blacklist-customer/blacklist-customer.component';
+import { ConfigTenureComponent } from './loan/config/config-tenure/config-tenure.component';
+import { ConfigLoanfeeComponent } from './loan/config/config-loanfee/config-loanfee.component';
+import { ConfigMaxloanComponent } from './loan/config/config-maxloan/config-maxloan.component';
 
 
 @NgModule({
@@ -80,11 +91,23 @@ import { AddNewMerchantComponent } from './merchant/add-new-merchant/add-new-mer
     ManageBillerComponent,
     Page404Component,
     AddNewMerchantComponent,
+    MccComponent,
+    LoanRequestComponent,
+    LoanSanctionComponent,
+    LoanConfigurationComponent,
+    LoanRepaymentComponent,
+    LoanDisbursementComponent,
+    LoanClosureComponent,
+    BlacklistCustomerComponent,
+    ConfigTenureComponent,
+    ConfigLoanfeeComponent,
+    ConfigMaxloanComponent,
   ], providers: [
     {
       provide: MatDialogRef,
       useValue: {}
     },
-  ]
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class LayoutModule { }

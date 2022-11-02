@@ -1,1 +1,274 @@
-<p>register-qr works!</p>
+<div class="content-container md-padding" *ngIf="pageStatus==='QRLIST'">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>qr_code</mat-icon>
+    </button>
+    <span>Existing QR List</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-card style="min-height:500px" class="no-shadow">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <form class="search-form">
+          <mat-form-field class="search-full-width" appearance="outline">
+            <input type="text" placeholder="Search Merchant" aria-label="Number" matInput [formControl]="myControl"
+              [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+            <button matSuffix mat-icon-button>
+              <mat-icon>search</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-lg-8 col-md-6 col-sm-12 text-right">
+        <button mat-stroked-button color="primary" class="btn-md" (click)="pageStatus='ADDQR'">
+          <mat-icon>add</mat-icon>
+          Generate New QR
+        </button>
+      </div>
+    </div>
+    <div class="bg-white">
+      <table class="table">
+        <thead class="bg-primary text-white">
+          <tr>
+            <th>S.No.</th>
+            <th>QR ID</th>
+            <th>Merchant ID</th>
+            <th>MerchantName</th>
+            <th>Status</th>
+            <th>Date Created</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let q of showQrList;let i=index" class="align-middle">
+            <td>{{i+1}}</td>
+            <td>{{q.qrId}}</td>
+            <td>{{q.merchantId}}</td>
+            <td>{{q.merchantName}}</td>
+            <td>{{q.status==='A'?'Active':'Pending'}}</td>
+            <td>{{q.createdDate | date:'dd MMM, yyyy hh:mm:ss a'}}</td>
+            <td>
+              <button mat-icon-button>
+                <mat-icon color="primary">visibility</mat-icon>
+              </button> &nbsp;
+              <button mat-icon-button>
+                <mat-icon color="yellow">edit_note</mat-icon>
+              </button> &nbsp;
+              <button mat-icon-button>
+                <mat-icon color="warn">delete_forever</mat-icon>
+              </button> &nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-6 text-left">
+        <mat-form-field appearance="outline">
+          <mat-label>Show QR List</mat-label>
+          <mat-select [(ngModel)]="showQr" (ngModelChange)="initShowQrList(showQr)">
+            <mat-option [value]="5">5</mat-option>
+            <mat-option [value]="10">10</mat-option>
+            <mat-option [value]="15">15</mat-option>
+            <mat-option [value]="20">20</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6 text-right pe-3">
+        <button mat-icon-button>
+          <mat-icon color="primary">skip_previous</mat-icon>
+        </button> &nbsp;
+        <button mat-icon-button>
+          <mat-icon color="primary">keyboard_double_arrow_left</mat-icon>
+        </button> &nbsp;
+        {{showQr}} of {{qrList.length}}
+        <button mat-icon-button>
+          <mat-icon color="primary">keyboard_double_arrow_right</mat-icon>
+        </button> &nbsp;
+        <button mat-icon-button>
+          <mat-icon color="primary">skip_next</mat-icon>
+        </button> &nbsp;
+      </div>
+    </div>
+  </mat-card>
+</div>
+<div class="content-container md-padding" *ngIf="pageStatus==='ADDQR'">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>qr_code</mat-icon>
+    </button>
+    <span>Generate QR</span>
+    <span class="spacer"></span>
+    <button mat-flat-button (click)="pageStatus='QRLIST'">
+      Back
+    </button>
+  </mat-toolbar>
+  <mat-card style="min-height:500px" class="no-shadow">
+    <mat-card-subtitle>Search merchant to generate QR</mat-card-subtitle>
+    <div class="row mb-4">
+      <div class="col-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Search Merchant ID</mat-label>
+          <input matInput placeholder="Enter Merchant ID" required>
+        </mat-form-field>
+      </div>
+      <div class="col-4">
+        <div class="text-left">
+          <button mat-flat-button color="primary" class="btn-md">
+            <mat-icon>search</mat-icon>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="merchant-detail">
+      <br>
+      <mat-card-subtitle>Merchant Details</mat-card-subtitle>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Merchant ID</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">aod</mat-icon>
+            <input matInput readonly [value]="merchant.id">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Merchant Name</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">storefront</mat-icon>
+            <input matInput readonly [value]="merchant.name">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Merchant Mobile</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">phone_iphone</mat-icon>
+            <input matInput readonly [value]="merchant.mobile">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Merchant Email ID</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">email</mat-icon>
+            <input matInput readonly [value]="merchant.email">
+          </mat-form-field>
+        </div>
+        <mat-card-subtitle>Fill The Details</mat-card-subtitle>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Select MCC</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">offline_pin</mat-icon>
+            <mat-select>
+              <mat-option [value]="m.mccId" *ngFor="let m of mccList">{{m.mccName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Alternate Email ID</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">email</mat-icon>
+            <input type="text" maxlength="100" matInput required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Website</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">web</mat-icon>
+            <input type="text" maxlength="100" matInput required>
+          </mat-form-field>
+        </div>
+
+        <mat-card-subtitle>Merchant Location Details</mat-card-subtitle>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Country</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">public</mat-icon>
+            <input type="text" maxlength="100" matInput required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>State/Province</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">apartment</mat-icon>
+            <input type="text" maxlength="100" matInput required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>District</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">festival</mat-icon>
+            <input type="text" maxlength="100" matInput required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>City</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">domain</mat-icon>
+            <input type="text" maxlength="100" matInput required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Village/Street</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">villa</mat-icon>
+            <input type="text" maxlength="100" matInput required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Zip Code</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">my_location</mat-icon>
+            <input type="text" maxlength="100" matInput required>
+          </mat-form-field>
+        </div>
+        <mat-card-subtitle>Merchant Discount Details</mat-card-subtitle>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Account Number</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">account_box</mat-icon>
+            <input type="text" maxlength="2" matInput required>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Select MDR</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">discount</mat-icon>
+            <mat-select>
+              <mat-option value="P">Perchantage</mat-option>
+              <mat-option value="F">Flat</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Perchantage Discount</mat-label>
+            <mat-icon matPrefix class="prefix-icon" color="primary">percent</mat-icon>
+            <input type="text" maxlength="2" matInput required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <mat-divider class="mt-3 mb-3"></mat-divider>
+        <div class="full-width text-center padding">
+          <button mat-stroked-button class="btn-md" type="reset">
+            <mat-icon>remove_circle_outline</mat-icon>
+            Reset Form </button>
+          &nbsp;
+          <button mat-flat-button color="primary" class="btn-md" type="submit">
+            <mat-icon>qr_code</mat-icon>
+             Generate QR
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,1 +1,272 @@
-<p>promotions works!</p>
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>local_offer</mat-icon>
+    </button>
+    <span>Promotions</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="md-card">
+    <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="onTabChanged($event)">
+      <mat-tab class="mat-active">
+        <ng-template mat-tab-label>
+          <span class="primary">Promotions List</span>
+        </ng-template>
+        <div class="tab-contents">
+          <div class="content-container md-padding">
+            <mat-toolbar color="primary">
+              <button mat-icon-button>
+                <mat-icon>local_offer</mat-icon>
+              </button>
+              <span>Existing Promotions</span>
+              <span class="spacer"></span>
+              <button mat-icon-button>
+                <mat-icon>info</mat-icon>
+              </button>
+            </mat-toolbar>
+            <div class="bg-white md-border-primary">
+              <table class="table table-hover">
+                <thead class="bg-light">
+                  <tr>
+                    <th>S.No.</th>
+                    <th>Title</th>
+                    <th>Create By</th>
+                    <th>Verified By</th>
+                    <th>From Date</th>
+                    <th>To Date</th>
+                    <th>Actions </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pl of promotionList;let i=index" class="align-middle"
+                    [ngClass]="i%2==1?'table-active':''">
+                    <td>{{i+1}}</td>
+                    <td>{{pl.title}}</td>
+                    <td>{{pl.createdBy}}</td>
+                    <td>{{pl.verifiedBy}}</td>
+                    <td>{{pl.fromDate }}</td>
+                    <td>{{pl.toDate}}</td>
+                    <td>
+                      <button mat-icon-button (click)="viewDetails(i)">
+                        <mat-icon color="primary">visibility</mat-icon>
+                      </button> &nbsp;
+                      <button mat-icon-button (click)="editPromotion(i)">
+                        <mat-icon color="yellow">edit_note</mat-icon>
+                      </button> &nbsp;
+                      <button mat-icon-button>
+                        <mat-icon color="warn">delete_forever</mat-icon>
+                      </button> &nbsp;
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+
+      <mat-tab [disabled]="globalServce.userProfile === 'C'">
+        <ng-template mat-tab-label>
+          <span class="primary">{{editPromotionLable}}</span>
+        </ng-template>
+        <div class="tab-contents">
+          <div class="content-container md-padding">
+            <mat-toolbar color="primary">
+              <button mat-icon-button>
+                <mat-icon>create_new_folder</mat-icon>
+              </button>
+              <span>Create New Promotion</span>
+              <span class="spacer"></span>
+              <button mat-icon-button>
+                <mat-icon>cottage</mat-icon>
+              </button>
+            </mat-toolbar>
+            <mat-card>
+              <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Promotion Name</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                    <input matInput placeholder="promotion name" name="customerId" required autocomplete="off"
+                      [(ngModel)]="newPromotion.promotionName">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Promotion Title</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                    <input matInput placeholder="Promotion title" name="customerId" required autocomplete="off"
+                      [(ngModel)]="newPromotion.title">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">stay_current_portrait</mat-icon>
+                    <input matInput placeholder="description" name="mobile" required autocomplete="off"
+                      [(ngModel)]="newPromotion.description">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+                    <mat-label>From Date</mat-label>
+                    <input matInput [matDatepicker]="datepicker" required [(ngModel)]="newPromotion.fromDate">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel class="btn-md">Cancel</button>
+                        <button mat-raised-button color="primary" class="btn-md" matDatepickerApply>Apply</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-icon matPrefix class="prefix-icon" color="primary">calendar_month</mat-icon>
+                    <mat-label>To Date</mat-label>
+                    <input matInput [matDatepicker]="toDatepicker" required [(ngModel)]="newPromotion.toDate">
+                    <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #toDatepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel class="btn-md">Cancel</button>
+                        <button mat-raised-button color="primary" class="btn-md" matDatepickerApply>Apply</button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <ngp-image-picker [_imageSrc]="initialImage" ($imageChanged)="onImageChanged($event)"
+                    [_config]="imagePickerConf"> </ngp-image-picker>
+                </div>
+
+              </div>
+              <mat-divider></mat-divider>
+
+              <div class="row">
+                <div class="padding text-right mt-3">
+                  <button mat-stroked-button color="primary" class="btn-md">Reset</button> &nbsp;
+                  <button mat-flat-button color="primary" class="btn-md" (click)="showAlert()">Create Promotion</button>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+
+
+      <mat-tab disabled="true">
+        <ng-template mat-tab-label>
+          <span class="primary">View Promotions</span>
+        </ng-template>
+        <div class="tab-contents">
+          <div class="content-container md-padding">
+            <mat-toolbar color="primary">
+              <button mat-icon-button>
+                <mat-icon>create_new_folder</mat-icon>
+              </button>
+              <span>Promotion Details</span>
+              <span class="spacer"></span>
+              <button mat-icon-button>
+                <mat-icon>cottage</mat-icon>
+              </button>
+            </mat-toolbar>
+            <mat-card>
+              <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Promotion Name</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                    <input matInput placeholder="Promotion name" name="customerId" required autocomplete="off"
+                      readonly="true" [(ngModel)]="promotionDetails.promotionName">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Promotion Title</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                    <input matInput placeholder="Promotion Title" name="customerId" required autocomplete="off"
+                      readonly="true" [(ngModel)]="promotionDetails.title">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">stay_current_portrait</mat-icon>
+                    <input matInput placeholder="description" name="mobile" required autocomplete="off" readonly="true"
+                      [(ngModel)]="promotionDetails.description">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>From Date</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                    <input matInput placeholder="From date" name="fromdate" required autocomplete="off" readonly="true"
+                      [(ngModel)]="promotionDetails.fromDate">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>To Date</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                    <input matInput placeholder="To Date" name="toDate" required autocomplete="off" readonly="true"
+                      [(ngModel)]="promotionDetails.toDate">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Created By</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">person</mat-icon>
+                    <input matInput placeholder="promotion title" name="createdBy" required autocomplete="off"
+                      readonly="true" [(ngModel)]="promotionDetails.createdBy">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Authorized By</mat-label>
+                    <mat-icon matPrefix class="prefix-icon" color="primary">stay_current_portrait</mat-icon>
+                    <input matInput placeholder="description" name="authBy" required autocomplete="off" readonly="true"
+                      [(ngModel)]="promotionDetails.verifiedBy">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <ngp-image-picker _imageSrc="assets/imgs/banner.jpg" ($imageChanged)="onImageChanged($event)"
+                    [_config]="imagePickerConfView"> </ngp-image-picker>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="globalServce.userProfile === 'M'">
+                <div class="padding text-right mt-3">
+                  <button mat-flat-button (click)="deletePromotion()" class="btn-md" color="primary">Delete Promotion</button>
+                  &nbsp;
+                </div>
+              </div>
+
+              <div class="row" *ngIf="globalServce.userProfile === 'C'">
+                <br>
+                <div class="padding">
+                  <button mat-flat-button color="primary" class="btn-md" (click)="profileOperation(1)">Delete Authorize</button> &nbsp;
+                  <button mat-flat-button color="primary" class="btn-md" (click)="profileOperation(2)">Delete De-Authorize</button> &nbsp;
+                  <button mat-flat-button color="primary" class="btn-md" (click)="profileOperation(3)">Promotion Authorize</button> &nbsp;
+                  <button mat-flat-button color="primary" class="btn-md" (click)="profileOperation(4)">Promotion De-Authorize</button> &nbsp;
+                  <button mat-flat-button color="primary" class="btn-md" (click)="profileOperation(5)">Update Authorize</button> &nbsp;
+                  <button mat-flat-button color="primary" class="btn-md" (click)="profileOperation(6)"> De-Authorize</button> &nbsp;
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

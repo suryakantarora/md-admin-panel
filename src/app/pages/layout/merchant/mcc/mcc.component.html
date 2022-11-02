@@ -1,0 +1,45 @@
+<div class="content-container md-padding">
+  <mat-toolbar color="primary">
+    <button mat-icon-button>
+      <mat-icon>format_list_bulleted_add</mat-icon>
+    </button>
+    <span *ngIf="pageStatus==1">Added MCC List</span>
+    <span *ngIf="pageStatus==2">Add/Remove MCC</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-card style="min-height:500px" class="no-shadow">
+    <mat-list *ngIf="pageStatus==1">
+      <div class="row">
+        <div class="col-6" *ngFor="let m of mccList;let i=index">
+          <mat-list-item>{{i+1}}. {{m.mccName}} </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+    </mat-list>
+    <div class="mt-3 mb-3" *ngIf="pageStatus==1">
+      <div class="full-width text-center padding">
+        <button mat-flat-button color="primary" class="btn-md" (click)="pageStatus=2"> Add/Remove MCC </button>
+      </div>
+    </div>
+    <div class="" *ngIf="pageStatus==2">
+      <mat-selection-list>
+      <div class="row">
+        <div class="col-4" *ngFor="let m of mccList">
+            <mat-list-option class="outline mb-2">
+              {{m.mccName}}
+            </mat-list-option>
+        </div>
+      </div>
+    </mat-selection-list>
+    <div class="mt-3 mb-3">
+      <div class="full-width text-center padding">
+        <button mat-stroked-button color="primary" class="btn-md" (click)="pageStatus=1"> Go Back </button> &nbsp;
+        <button mat-flat-button color="primary" class="btn-md" (click)="showAlert()"> Submit </button> &nbsp;
+      </div>
+    </div>
+    </div>
+  </mat-card>
+</div>
