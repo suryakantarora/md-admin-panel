@@ -28,6 +28,16 @@ import { FeedbackComponent } from './others/feedback/feedback.component';
 import { NewsComponent } from './others/news/news.component';
 import { PromotionsComponent } from './others/promotions/promotions.component';
 import { RatesComponent } from './others/rates/rates.component';
+import { LoanClosureReportComponent } from './report/loan-report/loan-closure-report/loan-closure-report.component';
+import { LoanDisbursementReportComponent } from './report/loan-report/loan-disbursement-report/loan-disbursement-report.component';
+import { LoanOutstandingReportComponent } from './report/loan-report/loan-outstanding-report/loan-outstanding-report.component';
+import { LoanReportComponent } from './report/loan-report/loan-report.component';
+import { LoanRequestReportComponent } from './report/loan-report/loan-request-report/loan-request-report.component';
+import { LoanSanctionReportComponent } from './report/loan-report/loan-sanction-report/loan-sanction-report.component';
+import { LoyalityReportComponent } from './report/loyality-report/loyality-report.component';
+import { MerchantCommisionReportComponent } from './report/merchant-commision-report/merchant-commision-report.component';
+import { TxnReportComponent } from './report/txn-report/txn-report.component';
+import { TxnSummaryReportComponent } from './report/txn-summary-report/txn-summary-report.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { ProfileManagementComponent } from './user_profile/profile-management/profile-management.component';
 import { UserManagementComponent } from './user_profile/user-management/user-management.component';
@@ -71,18 +81,28 @@ const routes: Routes = [
       { path: 'manage-billers', component: ManageBillersComponent },
       { path: 'add-new-merchant', component: AddNewMerchantComponent },
       { path: 'mcc', component: MccComponent },
-      {path: 'loan-request', component: LoanRequestComponent},
-      {path: 'loan-sanction', component: LoanSanctionComponent},
-      {path: 'loan-configuration', component: LoanConfigurationComponent},
-      {path: 'loan-repayment', component: LoanRepaymentComponent},
-      {path: 'loan-disbursement', component: LoanDisbursementComponent},
-      {path: 'loan-closure', component: LoanClosureComponent},
-      {path: 'blacklist-customer', component: BlacklistCustomerComponent},
-      {path: 'config-maxloan', component: ConfigMaxloanComponent},
-      {path: 'config-loanfee', component: ConfigLoanfeeComponent},
-      {path: 'config-tenure', component: ConfigTenureComponent},
+      { path: 'loan-request', component: LoanRequestComponent },
+      { path: 'loan-sanction', component: LoanSanctionComponent },
+      { path: 'loan-configuration', component: LoanConfigurationComponent },
+      { path: 'loan-repayment', component: LoanRepaymentComponent },
+      { path: 'loan-disbursement', component: LoanDisbursementComponent },
+      { path: 'loan-closure', component: LoanClosureComponent },
+      { path: 'blacklist-customer', component: BlacklistCustomerComponent },
+      { path: 'config-maxloan', component: ConfigMaxloanComponent },
+      { path: 'config-loanfee', component: ConfigLoanfeeComponent },
+      { path: 'config-tenure', component: ConfigTenureComponent },
+      { path: 'loan-request-report', component: LoanRequestReportComponent },
+      { path: 'loan-closure-report', component: LoanClosureReportComponent },
+      { path: 'loan-disbursement-report', component: LoanDisbursementReportComponent },
+      { path: 'loan-outstanding-report', component: LoanOutstandingReportComponent },
+      { path: 'loan-sanction-report', component: LoanSanctionReportComponent },
+      { path: 'loan-report', component: LoanReportComponent },
+      { path: 'loyality-report', component: LoyalityReportComponent },
+      { path: 'txn-report', component: TxnReportComponent },
+      { path: 'merchant-commision-report', component: MerchantCommisionReportComponent },
+      { path: 'txn-summary-report', component: TxnSummaryReportComponent },
 
-     /*  { path: '**', component: Page404Component } */
+      /*  { path: '**', component: Page404Component } */
     ]
   }
 ];

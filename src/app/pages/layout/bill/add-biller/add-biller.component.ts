@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { AlertService } from 'src/app/services/alert/alert.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -28,7 +29,9 @@ export class AddBillerComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
   categoryList: any = [];
-  constructor() { }
+  constructor(
+    private alert:AlertService
+  ) { }
 
   ngOnInit(): void {
     this.getCategoryList();
@@ -40,5 +43,8 @@ export class AddBillerComponent implements OnInit {
       { id: 'resturant', name: 'Resturant & Hotel' },
       { id: 'education', name: 'Education' },
     ];
+  }
+  addBiller() {
+    this.alert.showSuccessAlert('Success!', 'Biller added successfully.')
   }
 }

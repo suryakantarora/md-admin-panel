@@ -23,9 +23,12 @@ export class SideMenuComponent implements OnInit {
   setHeaderName(name:string){
     this.global.pageTitle=name
   }
-  checkActiveMenu(id: string, name:string) {
-    this.global.pageTitle=name
+  checkActiveMenu(id: string) {
     this.activeMenu = id;
+  }
+  checkSubActiveMenu(id: string, name:string) {
+    this.global.pageTitle=name;
+    this.subActiveMenu = id;
   }
   initMenuList() {
     this.menuList = [
@@ -80,11 +83,11 @@ export class SideMenuComponent implements OnInit {
       }, {
         menuId: 'M08', active: false, name: 'Reports', icon: 'summarize',
         child: [
-          { menuId: 'SM8001', active: false, name: 'Loan Reports' },
-          { menuId: 'SM8002', active: false, name: 'Transaction reports' },
-          { menuId: 'SM8003', active: false, name: 'Merchant commission reports' },
-          { menuId: 'SM8004', active: false, name: 'Transaction summary report' },
-          { menuId: 'SM8005', active: false, name: 'Loyalty reports' },
+          { menuId: 'SM8001', active: false, name: 'Loan Reports', link:'loan-report' },
+          { menuId: 'SM8002', active: false, name: 'Transaction reports', link:'txn-report' },
+          { menuId: 'SM8003', active: false, name: 'Merchant commission reports', link:'merchant-commision-report' },
+          { menuId: 'SM8004', active: false, name: 'Transaction summary report', link:'txn-summary-report' },
+          { menuId: 'SM8005', active: false, name: 'Loyalty reports', link:'loyality-report' },
         ]
       }, {
         menuId: 'M09', active: false, name: 'User & Profile', icon: 'account_circle', child: [

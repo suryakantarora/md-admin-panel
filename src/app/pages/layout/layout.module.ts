@@ -48,6 +48,16 @@ import { BlacklistCustomerComponent } from './loan/config/blacklist-customer/bla
 import { ConfigTenureComponent } from './loan/config/config-tenure/config-tenure.component';
 import { ConfigLoanfeeComponent } from './loan/config/config-loanfee/config-loanfee.component';
 import { ConfigMaxloanComponent } from './loan/config/config-maxloan/config-maxloan.component';
+import { LoanSanctionReportComponent } from './report/loan-report/loan-sanction-report/loan-sanction-report.component';
+import { LoanDisbursementReportComponent } from './report/loan-report/loan-disbursement-report/loan-disbursement-report.component';
+import { LoanOutstandingReportComponent } from './report/loan-report/loan-outstanding-report/loan-outstanding-report.component';
+import { LoanClosureReportComponent } from './report/loan-report/loan-closure-report/loan-closure-report.component';
+import { LoanRequestReportComponent } from './report/loan-report/loan-request-report/loan-request-report.component';
+import { LoanReportComponent } from './report/loan-report/loan-report.component';
+import { TxnReportComponent } from './report/txn-report/txn-report.component';
+import { MerchantCommisionReportComponent } from './report/merchant-commision-report/merchant-commision-report.component';
+import { TxnSummaryReportComponent } from './report/txn-summary-report/txn-summary-report.component';
+import { LoyalityReportComponent } from './report/loyality-report/loyality-report.component';
 
 
 @NgModule({
@@ -102,6 +112,16 @@ import { ConfigMaxloanComponent } from './loan/config/config-maxloan/config-maxl
     ConfigTenureComponent,
     ConfigLoanfeeComponent,
     ConfigMaxloanComponent,
+    LoanSanctionReportComponent,
+    LoanDisbursementReportComponent,
+    LoanOutstandingReportComponent,
+    LoanClosureReportComponent,
+    LoanRequestReportComponent,
+    LoanReportComponent,
+    TxnReportComponent,
+    MerchantCommisionReportComponent,
+    TxnSummaryReportComponent,
+    LoyalityReportComponent,
   ], providers: [
     {
       provide: MatDialogRef,

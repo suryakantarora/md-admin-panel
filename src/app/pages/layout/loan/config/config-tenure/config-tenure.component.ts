@@ -116,4 +116,7 @@ export class ConfigTenureComponent implements OnInit {
     const max = 9999999999;
     return 'FINO' + Math.floor(min + Math.random() * (max - min + 1))
   }
+  addTenure() {
+    this.alert.showSuccessAlert('Success!','Tenure & Interest rate added successfully');
+  }
 }
